@@ -1,0 +1,1119 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>倫理部</title>
+<meta name="description" content="倫理選択の受験生のための、思想家診断と共通テスト「公共，倫理」演習のサイト。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=BIZ+UDMincho:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=EB+Garamond:ital,wght@1,400;1,500&display=swap">
+<style>
+/* Layout: one reading column with a two-room switch at the top. The whole site borrows the 共通テスト mark sheet: rose-printed bubbles, pencil-graphite marks. */
+:root{
+  --paper:#FAFAF8; --sheet:#FFFFFF; --ink:#1C1C21; --ink-2:#5D5D66; --rule:#E2DEDF;
+  --rose:#D2506A; --rose-soft:#F8E4E8; --graphite:#4A4A52; --ok:#1E7A66; --ok-soft:#DDF0EA;
+  --surface:var(--sheet); --indigo:var(--rose); --indigo-soft:var(--rose-soft); --laurel:var(--ok);
+  --f-ui:"BIZ UDPGothic","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --f-text:"BIZ UDMincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --f-num:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --f-display:var(--f-text); --f-body:var(--f-ui); --f-mono:var(--f-num);
+  --f-latin:"EB Garamond",Georgia,serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#141418; --sheet:#1C1C22; --ink:#E8E7EA; --ink-2:#A2A1AA; --rule:#33323A;
+  --rose:#EE8599; --rose-soft:#3A222A; --graphite:#C9C8D0; --ok:#6CC9AE; --ok-soft:#173129; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#141418; --sheet:#1C1C22; --ink:#E8E7EA; --ink-2:#A2A1AA; --rule:#33323A;
+  --rose:#EE8599; --rose-soft:#3A222A; --graphite:#C9C8D0; --ok:#6CC9AE; --ok-soft:#173129; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;line-height:1.3;text-wrap:balance}
+p{margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--rose);outline-offset:2px}
+hr{border:0;border-top:1px solid var(--rule);margin:0}
+.wrap{max-width:700px;margin:0 auto;padding-block:18px 64px}
+.site{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-bottom:14px}
+.site .logo{display:flex;align-items:baseline;gap:10px}
+.site .logo b{font-family:var(--f-text);font-size:22px;letter-spacing:.12em}
+.site .logo span{font-size:11.5px;color:var(--ink-2);letter-spacing:.06em}
+.rooms{display:flex;border:1px solid var(--ink);border-radius:3px;overflow:hidden}
+.rooms a{padding:7px 16px;font-size:13.5px;font-weight:700;color:var(--ink);text-decoration:none}
+.rooms a+a{border-left:1px solid var(--ink)}
+.rooms a[aria-current="page"]{background:var(--ink);color:var(--paper)}
+.room{display:block}
+.room[hidden]{display:none!important}
+#shindan h1,#shindan h2,#shindan h3{font-family:var(--f-display);font-weight:700}
+#enshu section{display:grid;gap:28px}
+#shindan .meta{overflow-wrap:anywhere}
+#shindan .namerow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13.5px}
+#shindan .namerow input{font:inherit;font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:2px;padding:8px 10px;width:12em;max-width:100%}
+#shindan .tienote{font-size:12px;color:var(--ink-2)}
+#enshu .acts{display:grid;border-top:1px solid var(--rule)}
+#enshu .act{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:12px 4px;border-bottom:1px solid var(--rule)}
+#enshu .act.me{background:var(--rose-soft)}
+#enshu .act .an{font-weight:700;font-size:15px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#enshu .act .an small{font-weight:400;font-size:12px;color:var(--ink-2);margin-left:8px}
+#enshu .act .wk{font-family:var(--f-num);font-size:18px;text-align:right}
+#enshu .act .wk small{font-size:11px;color:var(--ink-2);margin-left:3px}
+#enshu .act .meta{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:flex-end;gap:6px 16px;font-size:12px;color:var(--ink-2)}
+#enshu .days{display:flex;align-items:flex-end;gap:3px;height:22px}
+#enshu .days i{display:block;width:9px;background:var(--graphite);min-height:2px}
+#enshu .days i.z{background:var(--rule)}
+#enshu .streak b{color:var(--rose);font-family:var(--f-num);font-size:13px}
+#enshu .act .meta .nowtag{color:var(--ok);font-weight:700}
+#enshu .fbauth{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+#enshu .fbauth .cap{flex:1 1 16em}
+.sitefoot{margin-top:48px;padding-top:14px;border-top:1px solid var(--rule);font-size:12px;color:var(--ink-2)}
+#shindan .label{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+#shindan .btn{background:var(--indigo);color:var(--paper);border:0;border-radius:2px;padding:12px 22px;font-weight:700;letter-spacing:.04em}
+#shindan .btn:hover{filter:brightness(1.08)}
+#shindan .btn-line{background:transparent;border:1px solid var(--ink-2);color:var(--ink);border-radius:2px;padding:9px 16px;font-size:13px}
+#shindan .btn-line:hover{border-color:var(--ink)}
+#shindan .textbtn{background:none;border:0;padding:4px 0;color:var(--ink-2);font-size:13px;text-decoration:underline;text-underline-offset:3px}
+#shindan .intro{display:grid;gap:28px}
+#shindan .mast{display:grid;gap:14px}
+#shindan .mast h1{font-size:clamp(44px,11vw,76px);font-weight:800;letter-spacing:.04em;line-height:1.1}
+#shindan .mast .sub{font-family:var(--f-latin);font-style:italic;font-size:18px;color:var(--ink-2)}
+#shindan .lead{font-size:16px;max-width:34em}
+#shindan .facts{display:flex;flex-wrap:wrap;gap:8px 28px;font-family:var(--f-mono);font-size:13px;color:var(--ink-2)}
+#shindan .facts b{color:var(--ink);font-weight:500;font-size:20px;margin-right:4px}
+#shindan .roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0 20px;border-top:1px solid var(--rule)}
+#shindan .roster div{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px solid var(--rule);font-size:14px}
+#shindan .roster span{font-family:var(--f-mono);font-size:11px;color:var(--ink-2);white-space:nowrap}
+#shindan .startrow{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+#shindan .note{font-size:12.5px;color:var(--ink-2);max-width:40em}
+#shindan .quiz{display:grid;gap:30px}
+#shindan .qhead{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+#shindan .qnum{font-family:var(--f-mono);font-size:13px;color:var(--ink-2)}
+#shindan .qnum b{font-size:22px;color:var(--ink);font-weight:500}
+#shindan .ticks{display:grid;grid-template-columns:repeat(32,1fr);gap:2px}
+#shindan .ticks i{height:3px;background:var(--rule)}
+#shindan .ticks i.on{background:var(--indigo)}
+#shindan .ticks i.now{background:var(--ink)}
+#shindan .qtext{font-family:var(--f-display);font-weight:700;font-size:clamp(22px,5.4vw,30px);line-height:1.55;min-height:4.7em;text-wrap:pretty}
+#shindan .qaxis{font-size:12px;color:var(--ink-2);margin-top:-18px}
+#shindan .scale{display:grid;gap:10px}
+#shindan .dots{display:flex;justify-content:space-between;align-items:center;gap:4px}
+#shindan .dot{flex:0 0 auto;border-radius:50%;border:1.5px solid var(--ink-2);background:transparent;padding:0;transition:background .12s,border-color .12s,transform .12s}
+#shindan .dot:hover{border-color:var(--indigo);transform:scale(1.06)}
+#shindan .dot.sel{background:var(--indigo);border-color:var(--indigo)}
+#shindan .dot.agree{border-color:var(--indigo)}
+#shindan .ends{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2)}
+#shindan .qfoot{display:flex;justify-content:space-between;align-items:center}
+#shindan .kbd{font-family:var(--f-mono);font-size:11px;color:var(--ink-2)}
+#shindan .result{display:grid;gap:44px}
+#shindan .hero{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(18px,5vw,40px);align-items:start}
+#shindan .vname{writing-mode:vertical-rl;text-orientation:upright;font-family:var(--f-display);font-weight:800;line-height:1;letter-spacing:.06em;color:var(--indigo);border-left:1px solid var(--rule);padding-left:clamp(10px,3vw,18px)}
+#shindan .hbody{display:grid;gap:16px;min-width:0}
+#shindan .latin{font-family:var(--f-latin);font-style:italic;font-size:22px;line-height:1.2}
+#shindan .meta{font-family:var(--f-mono);font-size:12px;color:var(--ink-2)}
+#shindan .score{display:flex;align-items:baseline;gap:10px}
+#shindan .score b{font-family:var(--f-mono);font-weight:500;font-size:44px;line-height:1;font-variant-numeric:tabular-nums}
+#shindan .score span{font-size:13px;color:var(--ink-2)}
+#shindan .desc{font-size:15.5px}
+#shindan .terms{display:flex;flex-wrap:wrap;gap:6px}
+#shindan .terms span{font-size:12.5px;padding:2px 9px;border:1px solid var(--rule);border-radius:2px;background:var(--surface)}
+#shindan .block{display:grid;gap:16px}
+#shindan .block>h2{font-size:21px}
+#shindan .why{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+#shindan .why li{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:12px;font-size:14.5px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
+#shindan .why li b{font-family:var(--f-display);font-weight:700}
+#shindan .why li.diff b{color:var(--laurel)}
+#shindan .runners{display:grid;gap:0;border-top:1px solid var(--rule)}
+#shindan .rrow{display:grid;grid-template-columns:2.2em minmax(0,1fr) auto;gap:10px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--rule)}
+#shindan .rrow .rk{font-family:var(--f-mono);font-size:12px;color:var(--ink-2)}
+#shindan .rrow .nm{font-family:var(--f-display);font-weight:700;font-size:16px}
+#shindan .rrow .nm small{font-family:var(--f-body);font-weight:400;font-size:12px;color:var(--ink-2);margin-left:8px}
+#shindan .rrow .pc{font-family:var(--f-mono);font-variant-numeric:tabular-nums;font-size:14px}
+#shindan .rrow.far .nm{color:var(--laurel)}
+#shindan .axes{display:grid;gap:14px}
+#shindan .axis{display:grid;gap:4px}
+#shindan .axis .top{display:flex;justify-content:space-between;font-size:13px}
+#shindan .axis .top .an{font-size:11.5px;color:var(--ink-2)}
+#shindan .track{position:relative;height:18px}
+#shindan .track::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:1px solid var(--rule)}
+#shindan .track::after{content:"";position:absolute;left:50%;top:3px;bottom:3px;border-left:1px solid var(--rule)}
+#shindan .track .t,#shindan .track .u,#shindan .track .f{position:absolute;top:50%;transform:translate(-50%,-50%);border-radius:50%}
+#shindan .track .t{width:13px;height:13px;border:2px solid var(--ink);background:var(--paper);z-index:1}
+#shindan .track .u{width:11px;height:11px;background:var(--indigo);z-index:2}
+#shindan .track .f{width:9px;height:9px;border-radius:1px;background:var(--laurel);z-index:1}
+#shindan .legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:var(--ink-2)}
+#shindan .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+#shindan .legend .lu{background:var(--indigo)}
+#shindan .legend .lt{border:2px solid var(--ink)}
+#shindan .legend .lf{background:var(--laurel);border-radius:1px}
+#shindan .mapctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:13px}
+#shindan select{font:inherit;font-size:13px;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:2px;padding:6px 8px}
+#shindan .mapbox{overflow-x:auto;background:var(--surface);border:1px solid var(--rule)}
+#shindan .mapbox svg{display:block;width:100%;max-width:560px;margin:0 auto;height:auto}
+#shindan .codebox{display:grid;gap:12px;padding:20px;background:var(--surface);border:1px solid var(--rule)}
+#shindan .code{font-family:var(--f-mono);font-size:30px;letter-spacing:.18em;font-weight:500;user-select:all;word-break:break-all}
+#shindan .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+#shindan .toast{font-size:12.5px;color:var(--laurel);min-height:1.2em}
+#shindan .addf{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;gap:8px}
+#shindan .addf input{font:inherit;font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--rule);border-radius:2px;padding:9px 10px;min-width:0}
+#shindan .addf input.mono{font-family:var(--f-mono);letter-spacing:.12em;text-transform:uppercase}
+@media (max-width:480px){#shindan .addf{grid-template-columns:1fr 1fr}
+#shindan .addf .btn{grid-column:1/-1}}
+#shindan .err{font-size:12.5px;color:var(--laurel)}
+#shindan .friends{display:grid;gap:0;border-top:1px solid var(--rule)}
+#shindan .fr{display:grid;gap:8px;padding:14px 0;border-bottom:1px solid var(--rule)}
+#shindan .fr .fh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+#shindan .fr .fn{font-weight:700;font-size:15px}
+#shindan .fr .fn small{font-weight:400;color:var(--ink-2);font-size:12.5px;margin-left:8px}
+#shindan .fr .fp{font-family:var(--f-mono);font-size:20px;font-variant-numeric:tabular-nums}
+#shindan .fr .tier{font-size:12px;color:var(--laurel);margin-left:8px;font-family:var(--f-body)}
+#shindan .fr .topic{font-size:13.5px;color:var(--ink-2)}
+#shindan .fr .topic b{color:var(--ink);font-weight:500}
+#shindan .empty{font-size:13.5px;color:var(--ink-2);padding:14px 0}
+#shindan details{border-top:1px solid var(--rule);padding-top:12px}
+#shindan summary{cursor:pointer;font-size:14px;font-weight:500}
+#shindan .full{margin-top:8px}
+#shindan .shared{display:grid;gap:24px}
+#shindan .foot{font-size:12px;color:var(--ink-2);display:grid;gap:6px}
+@media (prefers-reduced-motion:reduce){}
+#enshu .num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+#enshu .cap{font-size:11.5px;letter-spacing:.1em;color:var(--ink-2)}
+#enshu .btn{background:var(--ink);color:var(--paper);border:0;border-radius:3px;padding:11px 20px;font-weight:700}
+#enshu .btn:hover{opacity:.88}
+#enshu .btn-o{background:transparent;border:1px solid var(--rule);border-radius:3px;padding:9px 14px;font-size:13.5px}
+#enshu .btn-o:hover{border-color:var(--ink-2)}
+#enshu .link{background:none;border:0;padding:2px 0;color:var(--ink-2);font-size:13px;text-decoration:underline;text-underline-offset:3px}
+#enshu .top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:10px}
+#enshu .brand h1{font-size:clamp(34px,9vw,48px);font-weight:700;letter-spacing:.02em}
+#enshu .brand .cap{display:block;margin-bottom:2px}
+#enshu .who{font-size:12.5px;color:var(--ink-2);text-align:right}
+#enshu .goal{display:grid;gap:10px;background:var(--sheet);border:1px solid var(--rule);padding:18px}
+#enshu .goal .row1{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+#enshu .goal .big{font-size:40px;font-weight:600;line-height:1}
+#enshu .goal .big small{font-size:16px;margin-left:2px}
+#enshu .goal .sub{font-size:13px;color:var(--ink-2)}
+#enshu .bar{position:relative;height:10px;background:var(--rule)}
+#enshu .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--graphite)}
+#enshu .bar .line{position:absolute;top:-5px;bottom:-5px;left:90%;border-left:2px solid var(--rose)}
+#enshu .bar .line::after{content:"9割";position:absolute;top:-17px;left:-11px;font-size:10.5px;color:var(--rose);font-weight:700}
+#enshu .modes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:460px){#enshu .modes{grid-template-columns:1fr}}
+#enshu .mode{display:grid;gap:4px;text-align:left;background:var(--sheet);border:1px solid var(--rule);border-radius:3px;padding:16px;min-height:104px;align-content:start}
+#enshu .mode:hover{border-color:var(--ink-2)}
+#enshu .mode .mh{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+#enshu .mode b{font-size:16.5px}
+#enshu .mode .tag{font-family:var(--f-num);font-size:11px;color:var(--rose);border:1px solid var(--rose);padding:0 6px;border-radius:2px;white-space:nowrap}
+#enshu .mode .tag.done{color:var(--ok);border-color:var(--ok)}
+#enshu .mode span.d{font-size:13px;color:var(--ink-2)}
+#enshu .mode.feat{border:2px solid var(--ink)}
+#enshu .blk{display:grid;gap:12px}
+#enshu .blk>h2{font-size:18px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+#enshu .blk>h2 .cap{font-weight:400}
+#enshu .units{display:grid;border-top:1px solid var(--rule)}
+#enshu .unit{display:grid;grid-template-columns:minmax(0,1fr) 110px 52px;gap:12px;align-items:center;padding:10px 4px;border:0;border-bottom:1px solid var(--rule);background:none;text-align:left}
+#enshu .unit:hover{background:var(--sheet)}
+#enshu .unit .un{font-size:14.5px;min-width:0}
+#enshu .unit .un small{display:block;font-size:11.5px;color:var(--ink-2)}
+#enshu .unit .mini{height:6px;background:var(--rule);position:relative}
+#enshu .unit .mini i{position:absolute;left:0;top:0;bottom:0;background:var(--graphite)}
+#enshu .unit .mini i.hit{background:var(--ok)}
+#enshu .unit .pc{font-size:13px;text-align:right}
+@media (max-width:420px){#enshu .unit{grid-template-columns:minmax(0,1fr) 70px 46px}}
+#enshu .tabs{display:flex;gap:0;border-bottom:1px solid var(--rule);overflow-x:auto}
+#enshu .tab{background:none;border:0;border-bottom:2px solid transparent;padding:8px 12px;font-size:13.5px;color:var(--ink-2);white-space:nowrap}
+#enshu .tab.on{color:var(--ink);border-bottom-color:var(--rose);font-weight:700}
+#enshu .board{display:grid}
+#enshu .brow{display:grid;grid-template-columns:2em minmax(0,1fr) auto;gap:10px;align-items:baseline;padding:9px 4px;border-bottom:1px solid var(--rule)}
+#enshu .brow .rk{font-family:var(--f-num);font-size:13px;color:var(--ink-2)}
+#enshu .brow .nm{font-size:14.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#enshu .brow .vl{font-family:var(--f-num);font-size:14px}
+#enshu .brow .vl small{color:var(--ink-2);font-size:11px;margin-left:6px}
+#enshu .brow.me{background:var(--rose-soft)}
+#enshu .brow.me .nm::after{content:"（あなた）";font-size:11.5px;color:var(--ink-2)}
+#enshu .info{font-size:13px;color:var(--ink-2);padding:12px 0}
+#enshu .nick{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px}
+#enshu .nick input{font:inherit;font-size:14px;color:var(--ink);background:var(--sheet);border:1px solid var(--rule);border-radius:3px;padding:7px 9px;width:12em;max-width:100%}
+#enshu .qtop{display:flex;justify-content:space-between;align-items:center;gap:10px}
+#enshu .qmeta{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-2)}
+#enshu .ansno{display:inline-flex;align-items:center;gap:6px;font-size:12px}
+#enshu .ansno .bx{display:inline-grid;place-items:center;min-width:30px;height:24px;border:1.5px solid var(--ink);font-family:var(--f-num);font-weight:600;font-size:13px;color:var(--ink);padding:0 5px}
+#enshu .prog{display:flex;gap:3px}
+#enshu .prog i{flex:1;height:4px;background:var(--rule)}
+#enshu .prog i.o{background:var(--ok)}
+#enshu .prog i.x{background:var(--rose)}
+#enshu .prog i.n{background:var(--ink)}
+#enshu .stem{font-family:var(--f-text);font-size:16.5px;line-height:1.85}
+#enshu .stem b{font-weight:700}
+#enshu .choices{display:grid;gap:8px}
+#enshu .ch{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start;text-align:left;background:var(--sheet);border:1px solid var(--rule);border-radius:3px;padding:12px 14px;font-family:var(--f-text);font-size:15.5px;line-height:1.75}
+#enshu .ch:hover:not([disabled]){border-color:var(--ink-2)}
+#enshu .ch[disabled]{cursor:default}
+#enshu .bub{width:24px;height:32px;border:1.5px solid var(--rose);border-radius:50%;display:grid;place-items:center;font-family:var(--f-num);font-size:12px;color:var(--rose);margin-top:-2px;justify-self:center}
+#enshu .ch.pick .bub{background:var(--graphite);border-color:var(--graphite);color:var(--sheet)}
+#enshu .ch.right{border-color:var(--ok);background:var(--ok-soft)}
+#enshu .ch.right .bub{border-color:var(--ok);color:var(--ok)}
+#enshu .ch.right.pick .bub{background:var(--ok);color:var(--sheet)}
+#enshu .ch.wrong{border-color:var(--rose);background:var(--rose-soft)}
+#enshu .ch.wrong .bub{background:var(--rose);border-color:var(--rose);color:var(--sheet)}
+#enshu .expl{display:grid;gap:8px;border-left:3px solid var(--ok);padding:4px 0 4px 14px;font-size:14px}
+#enshu .expl.bad{border-left-color:var(--rose)}
+#enshu .expl b.v{font-size:15px}
+#enshu .expl.bad b.v{color:var(--rose)}
+#enshu .expl b.v{color:var(--ok)}
+#enshu .qfoot{display:flex;justify-content:space-between;align-items:center;gap:10px}
+#enshu .ta-head{display:flex;justify-content:space-between;align-items:baseline}
+#enshu .clock{font-family:var(--f-num);font-size:44px;font-weight:600;line-height:1}
+#enshu .clock.low{color:var(--rose)}
+#enshu .tscore{font-size:14px;color:var(--ink-2)}
+#enshu .tscore b{font-family:var(--f-num);font-size:26px;color:var(--ink);margin-left:4px}
+#enshu .term{font-family:var(--f-text);font-weight:700;font-size:clamp(26px,7vw,38px);text-align:center;padding:28px 8px;background:var(--sheet);border:1px solid var(--rule);text-wrap:balance}
+#enshu .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#enshu .tbtn{background:var(--sheet);border:1px solid var(--rule);border-radius:3px;padding:16px 8px;font-size:16px;font-weight:700}
+#enshu .tbtn:hover{border-color:var(--ink-2)}
+#enshu .tbtn.right{background:var(--ok-soft);border-color:var(--ok);color:var(--ok)}
+#enshu .tbtn.wrong{background:var(--rose-soft);border-color:var(--rose);color:var(--rose)}
+#enshu .score{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+#enshu .score .big{font-family:var(--f-num);font-size:56px;font-weight:600;line-height:1}
+#enshu .score .of{font-family:var(--f-num);font-size:20px;color:var(--ink-2)}
+#enshu .score .msg{font-size:14px;color:var(--ink-2)}
+#enshu .miss{display:grid;gap:0;border-top:1px solid var(--rule)}
+#enshu .miss>div{display:grid;gap:6px;padding:14px 0;border-bottom:1px solid var(--rule);font-size:14px}
+#enshu .miss .mt{font-size:12px;color:var(--ink-2)}
+#enshu .miss .mc{font-family:var(--f-text)}
+#enshu .miss .mc::before{content:"正解　";color:var(--ok);font-family:var(--f-ui);font-weight:700;font-size:12.5px}
+#enshu .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+#enshu .foot{font-size:12px;color:var(--ink-2);border-top:1px solid var(--rule);padding-top:14px;display:grid;gap:6px}
+@media (prefers-reduced-motion:reduce){}</style></head><body>
+
+<div class="wrap">
+<header class="site">
+  <div class="logo"><b>倫理部</b><span>倫理選択のための部室</span></div>
+  <nav class="rooms" aria-label="ページ切り替え">
+    <a href="#shindan" data-room="shindan">思想診断</a>
+    <a href="#enshu" data-room="enshu">共テ演習</a>
+  </nav>
+</header>
+<main>
+<div class="room" id="shindan" hidden>
+
+
+<!-- INTRO -->
+<section id="dIntro" class="intro">
+  <div class="mast">
+    <span class="label">倫理 / 西洋思想</span>
+    <h1>思想の座標</h1>
+    <p class="sub">Where do you stand among the philosophers?</p>
+  </div>
+  <p class="lead">32の問いに答えると、ソクラテスからロールズまで24人の思想家のうち、あなたの考え方に一番近い人がわかります。結果は8文字の思想コードになるので、倫理を取っている友達と見せ合って相性も比べられます。</p>
+  <div class="facts"><span><b>32</b>問</span><span><b>8</b>論点</span><span><b>24</b>人</span><span><b>約5</b>分</span></div>
+  <div class="namerow"><label for="dName">あなたの名前</label><input id="dName" maxlength="12" placeholder="例：たける" autocomplete="off"><span class="label">結果の文章や部員の活動に表示されます</span></div>
+  <div class="startrow">
+    <button class="btn" id="startBtn">診断をはじめる</button>
+    <button class="textbtn" id="resumeBtn" hidden>前回の結果を見る</button>
+  </div>
+  <div>
+    <p class="label" style="margin-bottom:8px">登場する思想家</p>
+    <div class="roster" id="roster"></div>
+  </div>
+  <p class="note">各思想家の立場は、高校倫理の教科書で扱われる理解をもとに、8つの論点それぞれ5段階で設定しています。あなたの回答も同じ8論点に換算し、全員との距離を測って近い順に並べます。</p>
+</section>
+
+<!-- QUIZ -->
+<section id="dQuiz" class="quiz" hidden>
+  <div class="qhead">
+    <span class="qnum"><b id="qn">1</b> / 32</span>
+    <button class="textbtn" id="quitBtn">最初に戻る</button>
+  </div>
+  <div class="ticks" id="ticks"></div>
+  <p class="qtext" id="qtext"></p>
+  <div class="scale">
+    <div class="dots" id="dots"></div>
+    <div class="ends"><span>そう思わない</span><span>そう思う</span></div>
+  </div>
+  <div class="qfoot">
+    <button class="textbtn" id="backBtn">ひとつ前へ</button>
+    <span class="kbd">キー 1〜7 でも回答できます</span>
+  </div>
+</section>
+
+<!-- SHARED (someone else's link) -->
+<section id="dShared" class="shared" hidden></section>
+
+<!-- RESULT -->
+<section id="dResult" class="result" hidden></section>
+
+
+</div>
+<div class="room" id="enshu" hidden>
+
+
+<section id="home">
+  <header class="top">
+    <div class="brand"><span class="cap">共通テスト「公共，倫理」対策</span><h1>倫理9割</h1></div>
+    <div class="who" id="who">ゲスト</div>
+  </header>
+
+  <div class="goal">
+    <div class="row1">
+      <span class="cap">あなたの通算正答率</span>
+      <span class="sub" id="gsub"></span>
+    </div>
+    <div class="big num" id="gbig">—<small>%</small></div>
+    <div class="bar"><i id="gbar" style="width:0%"></i><span class="line"></span></div>
+  </div>
+
+  <div class="modes">
+    <button class="mode feat" id="mWeek"><span class="mh"><b>今週の10問</b><span class="tag" id="wkTag">WEEK</span></span><span class="d">全員が同じ10問。最初の1回の点数がランキングに載ります。</span></button>
+    <button class="mode" id="mTA"><span class="mh"><b>60秒タイムアタック</b><span class="tag" id="taTag">BEST —</span></span><span class="d">用語を見て思想家を当てる。何問いけるか。</span></button>
+    <button class="mode" id="mMix"><span class="mh"><b>全範囲ミックス</b><span class="tag">20問</span></span><span class="d">本番と同じ4択で、全分野からランダムに出題。</span></button>
+    <button class="mode" id="mRev"><span class="mh"><b>間違えた問題</b><span class="tag" id="revTag">0問</span></span><span class="d">一度間違えた問題だけを解き直す。正解すると外れます。</span></button>
+  </div>
+
+  <div class="blk">
+    <h2>分野別演習<span class="cap">タップで10問</span></h2>
+    <div class="units" id="units"></div>
+  </div>
+
+  <div class="blk">
+    <h2 id="actTitle">あなたの学習記録<span class="cap">直近7日</span></h2>
+    <form class="nick" id="nickF"><label for="nick">名前</label><input id="nick" maxlength="12" placeholder="みんなに表示される名前" autocomplete="off"><button class="btn-o" type="submit">保存</button><span id="nickMsg" class="cap"></span></form>
+    <div class="fbauth" id="fbAuth" hidden></div>
+    <div class="acts" id="acts"></div>
+  </div>
+
+  <div class="blk" id="boardBlk" hidden>
+    <h2>ランキング<span class="cap" id="boardNote"></span></h2>
+    <div class="tabs">
+      <button class="tab on" data-tab="week">今週の10問</button>
+      <button class="tab" data-tab="ta">タイムアタック</button>
+      <button class="tab" data-tab="total">正解数</button>
+      <button class="tab" data-tab="rate">正答率</button>
+    </div>
+    <div class="board" id="board"><p class="info">読み込み中です…</p></div>
+  </div>
+
+  <div class="foot">
+    <p>問題はすべて共通テストの形式（最も適当なものを①〜④から一つ選ぶ）に合わせたオリジナル問題です。誤りの選択肢は、別の思想家の概念を入れ替えるなど、本番でよく使われるひっかけ方で作っています。</p>
+  </div>
+</section>
+
+<section id="quiz" hidden>
+  <div class="qtop">
+    <div class="qmeta"><span id="qmode"></span><span class="ansno">解答番号<span class="bx" id="qno">1</span></span></div>
+    <button class="link" id="qquit">やめる</button>
+  </div>
+  <div class="prog" id="qprog"></div>
+  <p class="stem" id="qstem"></p>
+  <div class="choices" id="qch"></div>
+  <div id="qexp"></div>
+  <div class="qfoot"><span class="cap num" id="qcount"></span><button class="btn" id="qnext" hidden>次へ</button></div>
+</section>
+
+<section id="ta" hidden>
+  <div class="ta-head"><span class="clock" id="clock">60</span><span class="tscore">正解<b id="tsc">0</b></span></div>
+  <p class="term" id="term"></p>
+  <div class="tgrid" id="tgrid"></div>
+  <div class="row"><button class="link" id="taquit">やめる</button></div>
+</section>
+
+<section id="result" hidden></section>
+
+
+</div>
+</main>
+<footer class="sitefoot">問題・診断はすべてオリジナルです。思想家の立場は高校倫理の教科書的な理解にもとづく目安です。</footer>
+</div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+window.RB={name:(function(){try{return localStorage.getItem('rb_name')||''}catch(e){return''}})(),subs:[],shSubs:[],
+  setName(n,quiet){n=(n||'').trim().slice(0,12);this.name=n;try{localStorage.setItem('rb_name',n)}catch(e){}if(!quiet)this.subs.forEach(f=>f(n))},
+  onName(f){this.subs.push(f)},setShindan(c){this.shSubs.forEach(f=>f(c))},onShindan(f){this.shSubs.push(f)},thinkerOf:null};
+</script>
+<script>
+(function(){
+
+const AX=[
+ {k:'A',name:'知の源',l:'理性',r:'経験',lp:'理性による推論を信頼する',rp:'経験と観察を信頼する',topic:'目の前の現実と、理屈で導いた答えが食い違ったら、どちらを信じる？'},
+ {k:'B',name:'世界の捉え方',l:'超越',r:'世俗',lp:'目に見えない超越的なものを重んじる',rp:'この世界の内側で物事を考える',topic:'人生の意味は、死んだ後にも残る何かと関係があると思う？'},
+ {k:'C',name:'善悪の基準',l:'原理',r:'結果',lp:'結果より原理や義務を重んじる',rp:'行為の良し悪しを結果で判断する',topic:'5人を救うために1人を犠牲にするレバー、引く？引かない？'},
+ {k:'D',name:'個人と社会',l:'個人',r:'共同体',lp:'個人の自由を優先する',rp:'共同体とのつながりを重く見る',topic:'納得できない校則やルールでも、みんなのために従うべき？'},
+ {k:'E',name:'社会の変化',l:'秩序',r:'変革',lp:'秩序や伝統を大切にする',rp:'今ある秩序を変えることに積極的',topic:'社会が明らかに不正なとき、どこまでの手段なら許される？'},
+ {k:'F',name:'人生の意味',l:'本質',r:'実存',lp:'人間や価値に普遍的な本質があると考える',rp:'意味は自分で作るものだと考える',topic:'「本当の自分」は、もうどこかにあるもの？これから作るもの？'},
+ {k:'G',name:'人間観',l:'信頼',r:'警戒',lp:'人間の善さを信じている',rp:'人間の弱さや悪から目をそらさない',topic:'絶対にバレないとわかっていても、人は正しく振る舞えると思う？'},
+ {k:'H',name:'心のあり方',l:'平静',r:'情熱',lp:'心の平静を何より重んじる',rp:'情熱や力を肯定する',topic:'穏やかで満ち足りた一生と、苦しくても何かを成し遂げる一生、選ぶならどっち？'}
+];
+
+// [text, {axisIndex: weight}]  weight>0 means agreeing moves toward the right pole
+const Q=[
+ ['確かな知識は、自分の目や耳で確かめたことからしか得られない。',{0:1}],
+ ['人生の意味は、神や死後の世界とは関係なく考えるべきだ。',{1:1}],
+ ['嘘をつけば多くの人が助かる場面でも、嘘をつくことは許されない。',{2:-1}],
+ ['人は社会の一員として生きてはじめて、本当の意味で人間らしくなれる。',{3:1}],
+ ['長く続いてきた制度や慣習には、それなりの知恵が詰まっている。',{4:-1}],
+ ['生きる意味は誰かから与えられるものではなく、自分で作るものだ。',{5:1}],
+ ['人間は本来善良で、悪くなるのは環境のせいだ。',{6:-1}],
+ ['心を乱されないことが、幸福への一番の近道だ。',{7:-1}],
+ ['数学の証明のように、経験に頼らず頭の中だけで確実な真理にたどり着ける。',{0:-1}],
+ ['この世界の外側に、目に見えない本当の実在がある気がする。',{1:-1}],
+ ['行為の良し悪しは、結局それがどれだけの人を幸せにしたかで決まる。',{2:1}],
+ ['他人に迷惑をかけない限り、何をしようと本人の自由だ。',{3:-1}],
+ ['社会が不正なら、根本からひっくり返すべきだ。',{4:1}],
+ ['人間には、生まれつき果たすべき役割や目的がある。',{5:-1}],
+ ['放っておけば、人は自分の利益のために争い合う。',{6:1}],
+ ['激しい情熱がなければ、偉大なことは成し遂げられない。',{7:1}],
+ ['生まれたばかりの人間の心は白紙で、考えはすべて後から入ってくる。',{0:1}],
+ ['祈りや信仰は、理性では届かない真理に触れる手段になりうる。',{1:-1,0:-0.3}],
+ ['一人を犠牲にして五人を救えるなら、そうすべきだ。',{2:1}],
+ ['社会全体の利益のためなら、個人の権利がある程度制限されてもよい。',{3:1}],
+ ['どんなに悪い政府でも、無秩序よりはましだ。',{4:-1,6:0.5}],
+ ['正しさや美しさには、時代や文化を超えた普遍的な基準がある。',{5:-1}],
+ ['正しいことを本当に理解した人は、悪いことをしない。',{6:-1,0:-0.3}],
+ ['欲望はできるだけ抑えて、少ないもので満足できる人が賢い。',{7:-1}],
+ ['実験や統計よりも、筋道の通った推論のほうが信頼できる。',{0:-1}],
+ ['世界は、物質とその法則だけで説明しきれる。',{1:1}],
+ ['結果がどうであれ、正しい動機で行動した人は責められるべきではない。',{2:-1}],
+ ['周りに流されず、自分だけの生き方を貫くことが何より大切だ。',{3:-1,5:0.5}],
+ ['常識や権威を疑うことから、すべては始まる。',{4:1}],
+ ['自分が何者であるかは、これからの選択次第でいくらでも変えられる。',{5:1}],
+ ['人間はどこまでいっても弱く、みじめな存在だ。',{6:1}],
+ ['自分を高めるためなら、苦しみや危険もすすんで引き受けたい。',{7:1}]
+];
+
+const T=[
+ ['socrates','ソクラテス','Sōkratēs','前470頃–前399','古代ギリシア','著作なし（プラトンの対話篇で伝わる）',['無知の知','魂への配慮','問答法','知徳合一'],'自分が知らないことを自覚するところから哲学を始めた。街角で人々に問いを投げかけ、正義や勇気とは何かを相手と一緒に考え抜こうとした。ただ生きるのではなく善く生きることを求め、不当な死刑判決にも逃げずに従った。',[-1,-1,-2,0,1,-1,-1,-1]],
+ ['plato','プラトン','Platōn','前427–前347','古代ギリシア','『国家』『饗宴』',['イデア','想起説','魂の三分説','哲人政治'],'目に見えるものは移ろう影にすぎず、その奥に永遠に変わらないイデアがあると考えた。魂は理性・気概・欲望からなり、理性が全体を導くとき正しい生き方になる。国家も同じで、善のイデアを知る哲学者が治めるべきだとした。',[-2,-2,-1,2,-1,-2,0,-1]],
+ ['aristotle','アリストテレス','Aristotelēs','前384–前322','古代ギリシア','『ニコマコス倫理学』『政治学』',['中庸','習性的徳','観想的生活','ポリス的動物'],'師プラトンのイデア論を批判し、物事の本質は個々の物の中にあると考えた。徳は習慣によって身につくもので、勇気が無謀と臆病の間にあるように、ほどよい中庸を選ぶことが大切だとした。人間は共同体の中で生きる存在だとも述べた。',[1,1,0,2,-1,-2,-1,-1]],
+ ['epicurus','エピクロス','Epikouros','前341–前270','ヘレニズム','『メノイケウス宛の手紙』',['快楽主義','アタラクシア','隠れて生きよ','原子論'],'幸福とは快楽だと言ったが、目指したのは贅沢ではなく、体に苦痛がなく心が乱れない静かな状態だった。死は感覚がなくなることだから恐れる必要はないと説き、政治から距離を置いて友人と穏やかに暮らすことを勧めた。',[2,2,1,-2,0,0,0,-2]],
+ ['zeno','ゼノン','Zēnōn','前335頃–前263頃','ヘレニズム','著作は断片のみ',['ストア派','アパテイア','自然に従って生きる','世界市民主義'],'世界は理性（ロゴス）によって秩序づけられており、人間もその一部だと考えた。怒りや恐れといった情念に振り回されないアパテイアこそ賢者の理想で、運命を受け入れて義務を果たすことを説いた。すべての人は理性を分かち合う同じ世界の市民だとした。',[-1,0,-2,1,-2,-2,0,-2]],
+ ['augustine','アウグスティヌス','Augustinus','354–430','中世キリスト教','『告白』『神の国』',['恩寵','原罪','信仰・希望・愛','神の国'],'若い頃の放蕩の末に回心し、人間は原罪を負っていて自分の力だけでは善をなせないと考えた。救いは神の恩寵によるもので、信仰・希望・愛の三つの徳を重んじた。地上の国と神の国を対比させ、神への愛に生きることを説いた。',[-1,-2,-2,1,-1,-2,2,0]],
+ ['aquinas','トマス・アクィナス','Thomas Aquinas','1225頃–1274','スコラ哲学','『神学大全』',['スコラ哲学','信仰と理性の調和','自然法','哲学は神学の侍女'],'アリストテレスの哲学を取り入れ、キリスト教の信仰と理性は対立せず調和すると論じた。理性で分かる真理と啓示によってのみ知られる真理を区別しながら、全体を一つの体系にまとめ上げた。その自然法の考え方は後の倫理学に大きな影響を与えた。',[-1,-2,-1,1,-2,-2,0,-1]],
+ ['machiavelli','マキャヴェリ','Niccolò Machiavelli','1469–1527','ルネサンス','『君主論』',['君主論','力量（ヴィルトゥ）','運命（フォルトゥナ）','政治と道徳の分離'],'人間がどうあるべきかではなく、実際にどう振る舞うかから政治を考えた。君主は国を守るためなら、愛されるより恐れられるほうが安全で、必要なら悪をなすこともためらうべきではないとした。政治を宗教や道徳から切り離した、近代政治学の祖とされる。',[2,2,2,1,0,0,2,1]],
+ ['bacon','ベーコン','Francis Bacon','1561–1626','イギリス経験論','『ノヴム・オルガヌム』',['知は力なり','帰納法','四つのイドラ','経験論'],'学問の目的は自然を理解し、人間の生活を豊かにすることだと考えた。そのために偏見や思い込み（イドラ）を取り除き、観察と実験から一般法則を導く帰納法を提唱した。古い学問の権威に頼らず、自分の目で確かめることを求めた。',[2,1,1,0,2,0,0,0]],
+ ['descartes','デカルト','René Descartes','1596–1650','大陸合理論','『方法序説』『省察』',['方法的懐疑','我思う、ゆえに我あり','物心二元論','高邁の精神'],'少しでも疑えるものはすべて疑い、それでも疑えないものとして考えている自分を見つけ出した。そこから確実な推論を積み上げて知識を建て直そうとした。精神と物体をまったく別のものとする二元論を唱え、情念を意志で統御する高邁の精神を説いた。',[-2,-1,-1,-2,0,-1,-1,-1]],
+ ['pascal','パスカル','Blaise Pascal','1623–1662','モラリスト','『パンセ』',['考える葦','中間者','繊細の精神','気晴らし'],'人間は宇宙の中では一本の葦のように弱いが、考えることができる点で偉大だとした。悲惨さと偉大さの間で揺れる中間者としての人間を見つめ、人は不安から目をそらすために気晴らしへ逃げると指摘した。理屈ではなく心で感じる神を信じた。',[0,-2,-1,-1,-1,1,2,1]],
+ ['spinoza','スピノザ','Baruch de Spinoza','1632–1677','大陸合理論','『エチカ』',['神即自然','汎神論','永遠の相のもとに','能動的感情'],'神と自然は同じ一つのものだと考え、世界のすべては必然的な法則に従っていると説いた。人間が不自由なのは物事の原因を知らずに感情に振り回されるからで、すべてを永遠の相のもとに理解するとき、心は自由と静けさを得るとした。',[-2,0,0,0,0,-2,-1,-2]],
+ ['hobbes','ホッブズ','Thomas Hobbes','1588–1679','社会契約説','『リヴァイアサン』',['万人の万人に対する闘争','自然権','社会契約','リヴァイアサン'],'国家のない自然状態では、人は自己保存のために争い合い、万人の万人に対する闘争になると考えた。その恐怖から逃れるため、人々は契約を結んで自然権を強大な主権者に譲り渡す。平和のためには絶対的な権力が必要だとした。',[1,2,1,1,-2,0,2,0]],
+ ['locke','ロック','John Locke','1632–1704','社会契約説','『統治二論』『人間知性論』',['タブラ・ラサ','生命・自由・財産','抵抗権','信託'],'生まれたときの心は何も書かれていない白紙で、知識はすべて経験から得られると考えた。政治では、人は生命・自由・財産の権利を持ち、それを守るために政府に権力を信託するとした。政府が信託に背けば、人民は抵抗して新しい政府をつくることができる。',[2,1,0,-1,1,0,-1,-1]],
+ ['rousseau','ルソー','Jean-Jacques Rousseau','1712–1778','社会契約説','『社会契約論』『エミール』',['自然に帰れ','一般意志','人民主権','自己愛と憐れみ'],'自然状態の人間は自由で善良だったが、文明と私有財産が不平等と堕落をもたらしたと考えた。共同体全体の利益を目指す一般意志に従うことで、本当の自由と平等を取り戻せるとし、人民主権を唱えた。フランス革命に大きな影響を与えた。',[0,1,-1,2,2,0,-2,1]],
+ ['kant','カント','Immanuel Kant','1724–1804','ドイツ観念論','『純粋理性批判』『実践理性批判』',['定言命法','道徳法則','自律','目的の国'],'道徳的に正しい行為とは、結果や損得ではなく、誰にでも当てはまる道徳法則に従う義務から行う行為だと考えた。自分で立てた法則に自ら従う自律にこそ人間の自由があり、人格はいつも目的として扱い、単なる手段にしてはならないとした。',[-2,-1,-2,0,0,-1,0,-1]],
+ ['hegel','ヘーゲル','G. W. F. Hegel','1770–1831','ドイツ観念論','『精神現象学』『法の哲学』',['弁証法','絶対精神','人倫','自由の実現としての歴史'],'物事は対立と矛盾を乗り越えながら、より高い段階へ発展していくという弁証法を唱えた。歴史は自由が実現していく過程であり、個人の自由は家族・市民社会・国家という人倫の中で完成するとした。',[-2,0,-1,2,1,-1,-1,0]],
+ ['bentham','ベンサム','Jeremy Bentham','1748–1832','功利主義','『道徳および立法の諸原理序説』',['最大多数の最大幸福','快楽計算','四つの制裁','量的功利主義'],'人間は快楽を求め苦痛を避ける存在であり、行為の正しさはそれがもたらす幸福の量で決まると考えた。快楽は計算できるとし、社会全体の幸福を最大にすることを法と政治の目的とした。刑務所や選挙制度の改革にも取り組んだ。',[2,2,2,1,1,0,0,1]],
+ ['mill','J・S・ミル','John Stuart Mill','1806–1873','功利主義','『功利主義』『自由論』',['質的功利主義','他者危害の原則','個性の尊重','内的制裁'],'ベンサムの功利主義を受け継ぎながら、快楽には質の違いがあると考え、満足した豚より不満足な人間であるほうがよいとした。『自由論』では、他人に危害を加えない限り、個人の自由は守られるべきだと主張した。',[2,2,2,-1,1,1,-1,0]],
+ ['kierkegaard','キルケゴール','Søren Kierkegaard','1813–1855','実存主義','『死に至る病』『あれか、これか』',['主体的真理','実存の三段階','絶望','単独者'],'誰にでも当てはまる客観的な真理ではなく、自分にとっての真理を求めた。人は美的・倫理的・宗教的という段階を経て、絶望を通り抜け、神の前にたった一人で立つ単独者になるとした。ヘーゲルの体系的な哲学を厳しく批判した。',[1,-2,-1,-2,0,2,1,2]],
+ ['marx','マルクス','Karl Marx','1818–1883','社会主義','『資本論』『共産党宣言』',['労働の疎外','唯物史観','階級闘争','下部構造'],'人間は労働を通じて自分を実現する存在なのに、資本主義のもとでは労働が苦役になり、人間らしさが失われていると考えた。歴史を動かすのは物質的な生産のあり方であり、階級闘争を経て搾取のない社会が実現すると説いた。',[1,2,1,2,2,0,-1,1]],
+ ['nietzsche','ニーチェ','Friedrich Nietzsche','1844–1900','実存主義','『ツァラトゥストラはこう語った』',['神は死んだ','ニヒリズム','力への意志','超人','永劫回帰'],'キリスト教の道徳は弱者のルサンチマン（恨み）から生まれたものだとし、神は死んだと宣言した。価値の土台が崩れたニヒリズムの時代に、自ら新しい価値を作り出す超人を理想とした。同じ人生が永遠に繰り返されても肯定できるかと問うた。',[1,2,0,-2,2,2,1,2]],
+ ['sartre','サルトル','Jean-Paul Sartre','1905–1980','実存主義','『存在と無』『実存主義とは何か』',['実存は本質に先立つ','自由の刑','アンガージュマン','投企'],'人間にはあらかじめ決まった本質がなく、まず存在し、その後の選択によって自分を作っていくと考えた。人間は自由であるよう運命づけられていて、その選択の責任は人類全体に及ぶ。社会に積極的に関わるアンガージュマンを説いた。',[0,2,-1,0,2,2,0,1]],
+ ['rawls','ロールズ','John Rawls','1921–2002','現代の正義論','『正義論』',['公正としての正義','原初状態','無知のヴェール','格差原理'],'自分の立場や能力がわからない無知のヴェールの下で人々が選ぶ原理こそ公正だと考えた。基本的な自由は全員に平等に保障され、格差は最も恵まれない人の利益になる場合にだけ認められるとした。功利主義を批判し、現代の正義論を切り開いた。',[-1,1,-2,1,1,0,-1,-1]]
+].map(a=>({id:a[0],jp:a[1],la:a[2],yr:a[3],era:a[4],work:a[5],terms:a[6],desc:a[7],v:a[8],short:a[1].replace('トマス・アクィナス','トマス').replace('J・S・ミル','ミル').replace('アウグスティヌス','アウグスティヌス')}));
+
+const LET='abcdefghi';
+const $=s=>document.querySelector(s);
+const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+let answers=store.get('ss_answers')||Array(Q.length).fill(null);
+let cur=0;
+let mine=store.get('ss_mine'); // code string
+let friends=store.get('ss_friends')||[];
+let mapX=0,mapY=1;
+
+function vecFromAnswers(a){
+  const s=Array(8).fill(0),w=Array(8).fill(0);
+  Q.forEach((q,i)=>{const v=a[i]??0;for(const k in q[1]){s[k]+=v*q[1][k];w[k]+=Math.abs(q[1][k])}});
+  return s.map((x,i)=>w[i]?x/(3*w[i])*2:0);
+}
+const encode=v=>v.map(x=>LET[Math.max(0,Math.min(8,Math.round((x+2)*2)))]).join('');
+const decode=c=>c.toLowerCase().split('').map(ch=>LET.indexOf(ch)/2-2);
+const validCode=c=>/^[a-i]{8}$/i.test(c||'');
+const dist=(a,b)=>Math.sqrt(a.reduce((s,x,i)=>s+(x-b[i])**2,0));
+const pct=d=>Math.max(0,Math.round(100-d*11));
+const rank=v=>T.map((t,i)=>({t,i,d:dist(v,t.v),w:v.reduce((s,x,k)=>s+Math.abs(x)*(x-t.v[k])**2,0)}))
+  .sort((a,b)=>Math.abs(a.d-b.d)>1e-9?a.d-b.d:(a.w-b.w)||(a.i-b.i));
+const pct1=d=>Math.max(0,100-d*11).toFixed(1);
+RB.thinkerOf=c=>validCode(c)?rank(decode(c))[0].t.jp:'';
+function tier(p){return p>=85?'ほぼ同じ学派':p>=70?'話が通じる隣人':p>=50?'いい議論相手':p>=30?'論敵':'宿敵'}
+
+/* ---------- intro ---------- */
+$('#dName').value=RB.name;$('#dName').onchange=e=>RB.setName(e.target.value);RB.onName(n=>{const el=$('#dName');if(el&&el.value!==n)el.value=n});
+$('#roster').innerHTML=T.map(t=>`<div>${t.jp}<span>${t.yr.replace(/頃/g,'')}</span></div>`).join('');
+if(validCode(mine)) $('#resumeBtn').hidden=false;
+$('#startBtn').onclick=()=>{const done=answers.findIndex(a=>a===null);cur=done<0?0:done;if(done<0){answers=Array(Q.length).fill(null);cur=0}show('dQuiz');renderQ()};
+$('#resumeBtn').onclick=()=>{location.hash='r-'+mine;route()};
+
+/* ---------- quiz ---------- */
+const SIZES=[40,33,26,20,26,33,40];
+$('#ticks').innerHTML=Q.map(()=>'<i></i>').join('');
+$('#dots').innerHTML=SIZES.map((s,i)=>`<button class="dot${i>3?' agree':''}" id="d${i}" style="width:${s}px;height:${s}px" aria-label="${['まったくそう思わない','そう思わない','ややそう思わない','どちらでもない','ややそう思う','そう思う','とてもそう思う'][i]}"></button>`).join('');
+SIZES.forEach((_,i)=>$('#d'+i).onclick=()=>pick(i));
+function renderQ(){
+  $('#qn').textContent=cur+1;
+  $('#qtext').textContent=Q[cur][0];
+  document.querySelectorAll('#ticks i').forEach((el,i)=>{el.className=i===cur?'now':(answers[i]!==null?'on':'')});
+  SIZES.forEach((_,i)=>$('#d'+i).classList.toggle('sel',answers[cur]===i-3));
+  $('#backBtn').style.visibility=cur?'visible':'hidden';
+}
+let lock=false;
+function pick(i){
+  if(lock)return;answers[cur]=i-3;store.set('ss_answers',answers);renderQ();lock=true;
+  setTimeout(()=>{lock=false;if(cur<Q.length-1){cur++;renderQ()}else finish()},200);
+}
+$('#backBtn').onclick=()=>{if(cur>0){cur--;renderQ()}};
+$('#quitBtn').onclick=()=>{show('dIntro')};
+document.addEventListener('keydown',e=>{
+  if($('#dQuiz').hidden||$('#shindan').hidden)return;
+  if(e.key>='1'&&e.key<='7'){pick(+e.key-1)}
+  else if(e.key==='ArrowLeft'||e.key==='Backspace'){if(cur>0){cur--;renderQ()}}
+});
+function finish(){
+  mine=encode(vecFromAnswers(answers));store.set('ss_mine',mine);RB.setShindan(mine);
+  const pending=store.get('ss_pending');
+  if(validCode(pending)&&pending!==mine&&!friends.some(f=>f.code===pending)){friends.push({name:'リンクの相手',code:pending});store.set('ss_friends',friends)}
+  store.set('ss_pending',null);
+  location.hash='r-'+mine;route();
+}
+
+/* ---------- views ---------- */
+function show(id){['dIntro','dQuiz','dResult','dShared'].forEach(s=>$('#'+s).hidden=s!==id);window.scrollTo(0,0)}
+function route(){
+  const m=(location.hash||'').match(/^#r-([a-i]{8})$/i);
+  if(m){const c=m[1].toLowerCase();
+    if(validCode(mine)&&c===mine){renderResult();show('dResult');return}
+    renderShared(c);show('dShared');return}
+  show('dIntro');
+}
+
+
+function axisRows(u,t,fr){
+  return AX.map((a,i)=>{
+    const P=v=>((v+2)/4*100).toFixed(1)+'%';
+    const f=(fr||[]).map(x=>`<span class="f" style="left:${P(x[i])}" title="友達"></span>`).join('');
+    return `<div class="axis"><div class="top"><span>${a.l}</span><span class="an">${a.name}</span><span>${a.r}</span></div>
+    <div class="track">${t?`<span class="t" style="left:${P(t[i])}"></span>`:''}${f}<span class="u" style="left:${P(u[i])}"></span></div></div>`}).join('');
+}
+
+function whyList(u,t){
+  const out=[];
+  const common=AX.map((a,i)=>({a,i,s:Math.sign(u[i])===Math.sign(t.v[i])&&Math.abs(u[i])>=.75&&Math.abs(t.v[i])>=1?Math.min(Math.abs(u[i]),Math.abs(t.v[i])):0}))
+    .filter(x=>x.s>0).sort((a,b)=>b.s-a.s).slice(0,3);
+  common.forEach(c=>out.push(`<li><b>${c.a.name}</b><span>どちらも${u[c.i]<0?c.a.lp:c.a.rp}。</span></li>`));
+  if(!common.length) out.push(`<li><b>全体の形</b><span>強く重なる論点は少なめですが、8つの論点を合わせたバランスが最も近い思想家です。</span></li>`);
+  let mx=-1,mi=0;AX.forEach((a,i)=>{const d=Math.abs(u[i]-t.v[i]);if(d>mx){mx=d;mi=i}});
+  if(mx>=1.5){const a=AX[mi],tv=t.v[mi],uv=u[mi];
+    const tPole=tv<0?a.l:tv>0?a.r:'中間';
+    const uTxt=Math.abs(uv)<.5?'どちらとも言えない位置にいます':`「${uv<0?a.l:a.r}」寄りです`;
+    out.push(`<li class="diff"><b>ずれる点</b><span>${a.name}では、${t.jp}が「${tPole}」側なのに対し、あなたは${uTxt}。</span></li>`)}
+  return out.join('');
+}
+
+function mapSVG(u,fr){
+  const W=360,pad=34,S=v=>pad+(v+2.4)/4.8*(W-2*pad),Sy=v=>W-S(v);
+  const ax=AX[mapX],ay=AX[mapY];
+  const groups={};T.forEach(t=>{const k=t.v[mapX]+','+t.v[mapY];(groups[k]=groups[k]||[]).push(t)});
+  let g='';
+  for(const k in groups){const [x,y]=k.split(',').map(Number),list=groups[k],cx=S(x),cy=Sy(y),right=cx<W-110;
+    g+=`<circle cx="${cx}" cy="${cy}" r="3" fill="var(--ink-2)"/>`;
+    list.forEach((t,i)=>{const dy=i*11-(list.length-1)*5.5+3.5;
+      g+=`<text x="${right?cx+6:cx-6}" y="${cy+dy}" font-size="9.5" fill="var(--ink-2)" text-anchor="${right?'start':'end'}" font-family="var(--f-body)">${t.short}</text>`})}
+  (fr||[]).forEach(f=>{const v=decode(f.code),cx=S(v[mapX]),cy=Sy(v[mapY]);
+    g+=`<rect x="${cx-4}" y="${cy-4}" width="8" height="8" fill="var(--laurel)"/><text x="${cx}" y="${cy-8}" font-size="10" fill="var(--laurel)" text-anchor="middle" font-weight="700" font-family="var(--f-body)">${esc(f.name.slice(0,8))}</text>`});
+  const ux=S(u[mapX]),uy=Sy(u[mapY]);
+  g+=`<circle cx="${ux}" cy="${uy}" r="7" fill="var(--indigo)"/><text x="${ux}" y="${uy+20}" font-size="11" fill="var(--indigo)" text-anchor="middle" font-weight="700" font-family="var(--f-body)">あなた</text>`;
+  const mid=W/2;
+  return `<svg viewBox="0 0 ${W} ${W}" role="img" aria-label="${ax.name}と${ay.name}の2軸で見た思想家の位置">
+  <line x1="${pad}" y1="${mid}" x2="${W-pad}" y2="${mid}" stroke="var(--rule)"/><line x1="${mid}" y1="${pad}" x2="${mid}" y2="${W-pad}" stroke="var(--rule)"/>
+  <rect x="${pad}" y="${pad}" width="${W-2*pad}" height="${W-2*pad}" fill="none" stroke="var(--rule)"/>
+  <text x="${pad}" y="${mid-6}" font-size="11" fill="var(--ink)" font-weight="700" font-family="var(--f-body)">${ax.l}</text>
+  <text x="${W-pad}" y="${mid-6}" font-size="11" fill="var(--ink)" font-weight="700" text-anchor="end" font-family="var(--f-body)">${ax.r}</text>
+  <text x="${mid+6}" y="${pad-10}" font-size="11" fill="var(--ink)" font-weight="700" font-family="var(--f-body)">${ay.r}</text>
+  <text x="${mid+6}" y="${W-pad+20}" font-size="11" fill="var(--ink)" font-weight="700" font-family="var(--f-body)">${ay.l}</text>
+  ${g}</svg>`;
+}
+
+function friendRows(u){
+  if(!friends.length) return `<p class="empty">まだ誰も追加されていません。友達の思想コードを入れると、相性と一番ぶつかりそうな論点が出ます。</p>`;
+  return friends.map((f,idx)=>{const v=decode(f.code),p=pct(dist(u,v)),top=rank(v)[0].t;
+    let mx=-1,mi=0;AX.forEach((a,i)=>{const d=Math.abs(u[i]-v[i]);if(d>mx){mx=d;mi=i}});
+    return `<div class="fr"><div class="fh"><span class="fn">${esc(f.name)}<small>${top.jp}タイプ</small></span><span class="fp">${p}%<span class="tier">${tier(p)}</span></span></div>
+    <p class="topic"><b>${AX[mi].name}</b>で一番ずれています。議論のお題：${AX[mi].topic}</p>
+    <div><button class="textbtn" data-del="${idx}">削除</button></div></div>`}).join('');
+}
+
+function renderResult(){
+  const u=decode(mine),r=rank(u),top=r[0].t,far=r[r.length-1];
+  const fs=Math.min(76,Math.floor(440/top.jp.length));
+  const fv=friends.map(f=>decode(f.code));
+  $('#dResult').innerHTML=`
+  <div class="hero">
+    <div class="vname" style="font-size:${fs}px">${top.jp}</div>
+    <div class="hbody">
+      <span class="label">あなたに最も近い思想家</span>
+      <div><p class="latin">${top.la}</p><p class="meta">${top.yr} ・ ${top.era} ・ ${top.work}</p></div>
+      <div class="score"><b>${pct1(r[0].d)}%</b><span>一致度</span></div>
+      <p class="desc">${top.desc}</p>
+      <div class="terms">${top.terms.map(x=>`<span>${x}</span>`).join('')}</div>
+    </div>
+  </div>
+
+  <div class="block"><h2>どこが近いのか</h2><ul class="why">${whyList(u,top)}</ul></div>
+
+  <div class="block"><h2>次に近い思想家</h2>
+    <div class="runners">
+      ${r.slice(1,4).map((x,i)=>`<div class="rrow"><span class="rk">${i+2}</span><span class="nm">${x.t.jp}<small>${x.t.terms[0]}</small></span><span class="pc">${pct1(x.d)}%</span></div>`).join('')}
+      <div class="rrow far"><span class="rk">24</span><span class="nm">${far.t.jp}<small>いちばん遠い</small></span><span class="pc">${pct1(far.d)}%</span></div>
+    </div>
+  </div>
+
+  <div class="block"><h2>8つの論点での位置</h2>
+    <div class="legend"><span><i class="lu"></i>あなた</span><span><i class="lt"></i>${top.jp}</span>${friends.length?'<span><i class="lf"></i>友達</span>':''}</div>
+    <div class="axes">${axisRows(u,top.v,fv)}</div>
+  </div>
+
+  <div class="block"><h2>思想家マップ</h2>
+    <div class="mapctl"><label for="mx">横</label><select id="mx">${AX.map((a,i)=>`<option value="${i}"${i===mapX?' selected':''}>${a.l} ⇔ ${a.r}</option>`).join('')}</select>
+    <label for="my">縦</label><select id="my">${AX.map((a,i)=>`<option value="${i}"${i===mapY?' selected':''}>${a.l} ⇔ ${a.r}</option>`).join('')}</select></div>
+    <div class="mapbox" id="map">${mapSVG(u,friends)}</div>
+  </div>
+
+  <div class="block"><h2>${RB.name?esc(RB.name)+'さんの':'あなたの'}思想コード</h2>
+    <div class="codebox">
+      <span class="code" id="codeTxt">${mine.toUpperCase()}</span>
+      <div class="row"><button class="btn-line" id="cpCode">コードをコピー</button><button class="btn-line" id="cpShare">結果の文章をコピー</button></div>
+      <span class="toast" id="toast"></span>
+    </div>
+    <p class="note">このページのリンクにも結果が入っています。リンクを開いた友達が診断を終えると、自動であなたとの相性が表示されます。</p>
+  </div>
+
+  <div class="block"><h2>友達と比べる</h2>
+    <form class="addf" id="addf"><input id="fname" placeholder="名前" maxlength="16" autocomplete="off"><input id="fcode" placeholder="コード or 届いた文章" autocomplete="off"><button class="btn" type="submit">追加</button></form>
+    <span class="err" id="ferr"></span>
+    <div class="friends" id="friends">${friendRows(u)}</div>
+  </div>
+
+  <details><summary>24人の一致度をすべて見る</summary>
+    <p class="tienote">一致度が同じ場合は、あなたがはっきり答えた論点（中央から遠い論点）でより近い思想家を上にしています。</p><div class="runners full">${r.map((x,i)=>`<div class="rrow"><span class="rk">${i+1}</span><span class="nm">${x.t.jp}<small>${x.t.era}</small></span><span class="pc">${pct1(x.d)}%</span></div>`).join('')}</div>
+  </details>
+
+  <div class="foot"><hr><div class="row" style="margin-top:12px"><button class="btn-line" id="retake">もう一度診断する</button></div>
+  <p>一致度は8論点それぞれの差から計算しています。思想家の立場は教科書的な理解に基づく目安で、本人の思想のすべてを表すものではありません。</p></div>`;
+
+  const redrawMap=()=>{$('#map').innerHTML=mapSVG(u,friends)};
+  $('#mx').onchange=e=>{mapX=+e.target.value;redrawMap()};
+  $('#my').onchange=e=>{mapY=+e.target.value;redrawMap()};
+  $('#cpCode').onclick=()=>copy(mine.toUpperCase(),'コードをコピーしました');
+  $('#cpShare').onclick=()=>copy(`【倫理部】${RB.name?RB.name+'さん':'わたし'}にいちばん近い思想家は${top.jp}（一致度${pct1(r[0].d)}%）でした。\n思想コード：${mine.toUpperCase()}`,'文章をコピーしました');
+  $('#fcode').oninput=e=>{const t=e.target.value;const nm=t.match(/】(.+?)さんに/);if(nm&&!$('#fname').value)$('#fname').value=nm[1].slice(0,16)};
+  $('#addf').onsubmit=e=>{e.preventDefault();const raw=$('#fcode').value;const mm=raw.match(/(?:^|[^A-Za-z])([A-Ia-i]{8})(?![A-Za-z])/);const n=$('#fname').value.trim(),c=(mm?mm[1]:raw.trim()).toLowerCase();
+    if(!validCode(c)){$('#ferr').textContent='コードはA〜Iのアルファベット8文字です。';return}
+    friends.push({name:n||'友達'+(friends.length+1),code:c});store.set('ss_friends',friends);renderResult();};
+  $('#friends').onclick=e=>{const d=e.target.dataset.del;if(d!==undefined){friends.splice(+d,1);store.set('ss_friends',friends);renderResult()}};
+  $('#retake').onclick=()=>{answers=Array(Q.length).fill(null);store.set('ss_answers',answers);cur=0;history.replaceState(null,'',location.pathname+location.search);show('dQuiz');renderQ()};
+}
+
+function renderShared(c){
+  const v=decode(c),r=rank(v),top=r[0].t;
+  const hasMine=validCode(mine);
+  let cmp='';
+  if(hasMine){const u=decode(mine),p=pct(dist(u,v));let mx=-1,mi=0;AX.forEach((a,i)=>{const d=Math.abs(u[i]-v[i]);if(d>mx){mx=d;mi=i}});
+    cmp=`<div class="block"><h2>あなたとの相性</h2><div class="score"><b>${p}%</b><span>${tier(p)}</span></div>
+    <p class="topic">${AX[mi].name}で一番ずれています。議論のお題：${AX[mi].topic}</p>
+    <div class="legend"><span><i class="lu"></i>あなた</span><span><i class="lf"></i>リンクの相手</span></div>
+    <div class="axes">${axisRows(u,null,[v])}</div></div>`}
+  $('#dShared').innerHTML=`
+    <span class="label">共有された結果 ・ 思想コード ${c.toUpperCase()}</span>
+    <div class="hero"><div class="vname" style="font-size:${Math.min(64,Math.floor(380/top.jp.length))}px">${top.jp}</div>
+      <div class="hbody"><p class="latin">${top.la}</p><p class="meta">${top.yr} ・ ${top.era}</p>
+      <div class="score"><b>${pct1(r[0].d)}%</b><span>一致度</span></div><p class="desc">${top.desc}</p>
+      <div class="terms">${top.terms.map(x=>`<span>${x}</span>`).join('')}</div></div></div>
+    ${cmp}
+    <div class="row">${hasMine?`<button class="btn" id="addThem">友達リストに追加</button><button class="btn-line" id="toMine">自分の結果へ</button>`:`<button class="btn" id="takeIt">自分も診断して相性を見る</button>`}</div>`;
+  if(hasMine){
+    $('#addThem').onclick=()=>{if(!friends.some(f=>f.code===c)){friends.push({name:'リンクの相手',code:c});store.set('ss_friends',friends)}location.hash='r-'+mine};
+    $('#toMine').onclick=()=>{location.hash='r-'+mine};
+  }else{
+    $('#takeIt').onclick=()=>{store.set('ss_pending',c);answers=Array(Q.length).fill(null);cur=0;show('dQuiz');renderQ()};
+  }
+}
+
+function copy(text,msg){
+  const done=()=>{$('#toast').textContent=msg;setTimeout(()=>{const t=$('#toast');if(t)t.textContent=''},2200)};
+  try{navigator.clipboard.writeText(text).then(done,()=>fallback())}catch(e){fallback()}
+  function fallback(){const r=document.createRange();r.selectNodeContents($('#codeTxt'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('#toast').textContent='選択しました。長押しでコピーしてください'}
+}
+
+window.__shindanRoute=route;
+
+})();
+</script>
+<script>
+(function(){
+
+/* ===== 問題データ ===== [分野, テーマ, 正しい選択肢, 誤1, 誤2, 誤3, 解説] */
+const UNITS=['青年期と人間の心','古代ギリシアの思想','ユダヤ教・キリスト教・イスラーム','インドの思想と仏教','中国の思想','日本の思想（古代〜近世）','日本の思想（近代）','西洋近代の思想','19世紀の思想と実存主義','現代の思想と倫理的課題'];
+const QD=[
+[0,'青年期について説明した学者','ホリングワースは、青年が親の監督から離れて精神的に自立しようとすることを「心理的離乳」と呼んだ。','レヴィンは、青年を子どもと大人の両方の集団に安定して属する存在とみて「マージナル・マン」と呼んだ。','エリクソンは、社会的な責任や義務を一時的に猶予される青年期を「第二の誕生」と呼んだ。','ルソーは、感情の起伏が激しい青年期を「疾風怒濤の時代」と呼んだ。','マージナル・マン（境界人）は「どちらにも属さず不安定」という意味。猶予期間はモラトリアム（エリクソン）、第二の誕生はルソー、疾風怒濤はホール。'],
+[0,'マズローの欲求階層説','生理的欲求などの欠乏欲求がある程度満たされると、自分の可能性を実現しようとする自己実現の欲求が現れる。','最も基本的で低次の欲求は、他者から認められたいという承認の欲求である。','自己実現の欲求は、満たされないと不安になる欠乏欲求の一つに数えられる。','所属と愛情の欲求は、安全の欲求よりも低次の欲求とされる。','順番は 生理的→安全→所属と愛情→承認→自己実現。下の四つが欠乏欲求、自己実現は成長欲求。'],
+[0,'防衛機制の具体例','合理化とは、手に入らなかったぶどうを「どうせすっぱい」と思い込むように、もっともらしい理由をつけて自分を納得させることである。','昇華とは、受け入れがたい欲求とは反対の態度を、ことさら強く示すことである。','退行とは、自分が抱いている受け入れがたい感情を、他人が抱いているものとみなすことである。','抑圧とは、満たされない欲求を、芸術やスポーツなど社会的に価値ある活動に向けかえることである。','反対の態度＝反動形成、他人のものとみなす＝投射、価値ある活動へ向けかえ＝昇華。抑圧は欲求を意識から締め出すこと。'],
+[0,'エリクソンの発達理論','青年期の発達課題はアイデンティティの確立であり、それがうまくいかない状態をアイデンティティの拡散と呼んだ。','人生を乳児期・児童期・青年期・老年期の四段階に分け、各段階の課題を示した。','青年期の課題は親密性の獲得であり、その失敗は孤立をもたらすとした。','人生を三つの段階に分け、青年期を人格が完成する最終段階とした。','エリクソンはライフサイクルを8段階に分けた。親密性対孤立は成人前期の課題。'],
+[0,'レヴィンによる葛藤（コンフリクト）の型','接近―接近型とは、二つの魅力的な対象のうち、どちらか一方を選ばなければならない場合の葛藤である。','回避―回避型とは、一つの対象が魅力と嫌な面を同時にもつ場合の葛藤である。','接近―回避型とは、二つの避けたい対象のどちらかを選ばなければならない場合の葛藤である。','欲求不満に対して、筋道を立てて問題を解決しようとする反応を防衛機制という。','一つの対象が魅力と嫌な面をもつ＝接近―回避型、二つとも嫌＝回避―回避型。筋道立てた解決は合理的解決で、防衛機制ではない。'],
+[0,'パーソナリティの理論','ユングは、心のエネルギーが自分の内面に向かうか外界に向かうかによって、内向型と外向型に分けた。','クレッチマーは、性格を五つの因子の組み合わせで説明する特性論を唱えた。','シュプランガーは、体型と気質の関係から、性格を三つの類型に分けた。','フロイトは、心はイド・自我・超自我からなり、超自我が快楽原則に従って本能的欲求を満たそうとするとした。','五因子（ビッグファイブ）は現代の特性論。体型と気質はクレッチマー、シュプランガーは価値観による6類型。快楽原則に従うのはイド。'],
+[0,'発達と青年期をめぐる学説','ハヴィガーストは、人生の各段階で達成すべき課題を発達課題として示した。','ピアジェは、青年期に入ると具体的な事物に即してのみ考える具体的操作期に達するとした。','ホールは、青年期を自我にめざめる「第二の誕生」の時期とした。','レヴィンは、人生の各段階に固有の課題があるとし、それを発達課題と呼んだ。','青年期は抽象的に考えられる形式的操作期（ピアジェ）。第二の誕生はルソー。発達課題はハヴィガースト。'],
+
+[1,'自然哲学者の思想','タレスは、万物の根源（アルケー）を水であると考えた。','ヘラクレイトスは、万物の根源を、それ以上分割できない原子であると考えた。','ピタゴラスは、「万物は流転する」と述べ、絶えず変化する世界のあり方を説いた。','デモクリトスは、万物の根源を数であると考え、宇宙の調和を説いた。','原子＝デモクリトス、万物は流転する（火）＝ヘラクレイトス、数＝ピタゴラス。'],
+[1,'ソフィストとソクラテス','プロタゴラスは「人間は万物の尺度である」と述べ、真理や価値は人によって異なるとする相対主義の立場をとった。','ソクラテスは、徳は生まれつきの素質であり、知識として教えることはできないと考えた。','ソクラテスは、自分が知者であると自覚することが、真の知への出発点になると考えた。','ソフィストは、報酬を受け取ることを拒み、無償で人々に徳を説いた。','ソクラテスは「知徳合一」で、徳は知である。出発点は無知の自覚（無知の知）。ソフィストは報酬をとって弁論術を教えた。'],
+[1,'ソクラテスの思想','問答を通じて相手に無知を自覚させ、自ら真理を見いださせる方法を、自らの母の仕事になぞらえて助産術と呼んだ。','ただ善く生きることよりも、快く生きることのほうが大切だと説いた。','不当な死刑判決を受けたが、弟子たちの助けで国外に逃れ、哲学を続けた。','魂のことよりも、まず身体と財産に気を配るべきだと人々に説いた。','ソクラテスは「ただ生きるのではなく善く生きる」を説き、判決に従って毒杯を仰いだ。最も大切なのは魂への配慮。'],
+[1,'プラトンの思想','魂は理性・気概・欲望の三つの部分からなり、理性が気概と欲望を正しく導くとき、正義の徳が実現すると考えた。','イデアは、感覚でとらえられる個々の事物の中に、その本質として内在していると考えた。','エロースとは、肉体的な快楽を求める欲望のことであり、イデアの認識を妨げるものだと考えた。','理想国家では、生産者階級が国家全体を統治すべきだと考えた。','個物に内在する本質（形相）はアリストテレス。プラトンのエロースは、イデアを求める魂の憧れ。統治者は哲学者（哲人政治）。'],
+[1,'アリストテレスの倫理思想','徳を知性的徳と習性的（倫理的）徳に分け、習性的徳は行為を繰り返す習慣づけによって身につくとした。','人間にとって最高の生き方は、快楽を味わい尽くす快楽的生活であるとした。','事物の本質である形相は、質料から離れたイデア界に存在するとした。','国家にとって友愛（フィリア）は不要であり、正義だけで国家は成り立つとした。','最高の生き方は観想的生活。形相は個物に内在。アリストテレスは友愛を正義以上に重視した。'],
+[1,'アリストテレスの正義','名誉や財貨を、各人の能力や功績に応じて配分することを、配分的正義と呼んだ。','調整的正義とは、各人の功績に応じて刑罰の重さを決めることである。','中庸とは、つねに両極端のちょうど算術的な真ん中を選ぶことである。','人間は孤立したまま自足できる存在であり、ポリスなしでも善く生きられるとした。','調整的正義は、損害や利得の不均衡を等しく調整すること。中庸は状況に応じた適切な中間。人間は「ポリス的動物」。'],
+[1,'ヘレニズム期の思想','エピクロスは、肉体に苦痛がなく、魂に乱れのない状態（アタラクシア）を幸福と考えた。','ストア派は、情念に従って生きることこそ、人間本来の自然な生き方だと説いた。','エピクロス派は「自然に従って生きよ」を掲げ、理性によって情念を抑える禁欲を説いた。','ストア派のゼノンは「隠れて生きよ」と説き、政治から離れた生活を勧めた。','「自然に従って生きよ」・禁欲・アパテイア＝ストア派、「隠れて生きよ」・アタラクシア＝エピクロス派。'],
+[1,'ストア派とその周辺','ストア派は、すべての人間は理性（ロゴス）を分かちもつ点で平等であるとし、世界市民主義（コスモポリタニズム）を説いた。','エピクロスは、死は苦痛に満ちたものなので、つねに恐れて備えるべきだとした。','ストア派の理想は、魂の平静を意味するアタラクシアに達した賢者である。','キュニコス派のディオゲネスは、富と名声を積極的に追い求めることを説いた。','エピクロスは「死は感覚の消滅なので恐れる必要はない」とした。ストア派の理想はアパテイア。ディオゲネスは欲望を最小限にした生活を実践した。'],
+
+[2,'ユダヤ教','神と民族との契約を重んじ、神から与えられた律法（トーラー）を守ることを重視した。','救世主（メシア）は、イエスとしてすでに到来したと考える。','唯一の神ではなく、自然の中に宿る多くの神々を崇拝する。','自分たちが神に選ばれた民であるという考えを否定した。','ユダヤ教は唯一神ヤハウェの宗教で、選民思想とメシア待望をもつ。イエスをメシアとするのはキリスト教。'],
+[2,'イエスの教え','神の愛（アガペー）は、罪人を含むすべての人に、無差別かつ無償で注がれるものだと説いた。','律法を形式的に厳格に守ることを、何より重視した。','「目には目を、歯には歯を」と述べ、受けた害に等しい報復を勧めた。','隣人愛の対象を、同じ民族の人々に限った。','イエスは律法の形式主義（パリサイ派）を批判し、律法の精神は神への愛と隣人愛だとした。敵をも愛せと説いた。'],
+[2,'パウロの思想','人は律法の行いによってではなく、イエス・キリストへの信仰によって義とされると説いた。','イエスの十字架の死は、ユダヤ民族だけの罪をあがなうものだと説いた。','キリスト教の三元徳を、知恵・勇気・節制であるとした。','キリスト教を、ユダヤ人以外の人々に伝えることに反対した。','パウロは信仰義認を説き、異邦人への伝道を行った。三元徳は信仰・希望・愛。知恵・勇気・節制は正義と合わせてギリシアの四元徳。'],
+[2,'中世キリスト教の思想家','アウグスティヌスは、人間は原罪を負っており、神の恩寵によってのみ救われると説いた。','トマス・アクィナスは、信仰と理性は根本的に対立するので、理性による探究を退けるべきだとした。','アウグスティヌスは、ギリシアの四元徳を、キリスト教の三元徳よりも上位に置いた。','トマス・アクィナスは、プラトン哲学を土台にしてスコラ哲学を体系化した。','トマスはアリストテレス哲学を取り入れ、信仰と理性の調和を説いた。アウグスティヌスは三元徳を四元徳の上に置いた。'],
+[2,'イスラーム','ムハンマドを最後で最大の預言者とし、聖典『クルアーン（コーラン）』を神の言葉とする。','イエスを神の子とし、三位一体の神を信仰する。','神の姿を像に表して礼拝することを勧める。','ムハンマドは、神が人間の姿をとって現れた存在として崇拝される。','イスラームではイエスは預言者の一人。偶像崇拝は厳しく禁じられ、ムハンマドも人間の預言者であって神ではない。'],
+[2,'イスラームの五行','信仰告白・礼拝・喜捨・断食・巡礼の五つが、ムスリムの義務とされる。','喜捨は、本人が望む場合にだけ行えばよい任意の行為とされる。','礼拝は、週に一度、金曜日にだけ行えばよいとされる。','断食は、ラマダーン月の間、昼夜を問わず続けて行うとされる。','喜捨（ザカート）は義務。礼拝は1日5回。断食は日の出から日没までの日中に行う。'],
+
+[3,'古代インドの思想','ウパニシャッド哲学は、宇宙の根本原理ブラフマンと個人の本質アートマンが一体であると悟ることで、輪廻から解脱できるとした。','ジャイナ教は、苦行を否定し、快楽を楽しむことで解脱できると説いた。','バラモン教は、行為（カルマ）の結果が来世に影響するという考えを否定した。','ウパニシャッド哲学では、輪廻は人間にとって望ましい永遠の生とされた。','梵我一如がポイント。ジャイナ教は苦行と不殺生を重視。輪廻は苦であり、そこからの解脱が目標。'],
+[3,'ブッダの教え','四諦とは苦諦・集諦・滅諦・道諦のことで、苦の原因を明らかにし、それを滅する道を示したものである。','中道とは、快楽と苦行のうち、苦行のほうを重視する生き方である。','縁起とは、すべての事物は他と関わりなく、それ自体で存在しているという考えである。','諸法無我とは、永遠に変わらない自我（アートマン）が存在するという教えである。','中道は快楽と苦行の両極端を離れること。縁起はすべてが相互依存で成り立つこと。無我は不変の実体を否定する。'],
+[3,'慈悲と煩悩','慈とは他者に楽を与えること、悲とは他者の苦を取り除くことであり、ブッダはあらゆる生命への慈悲を説いた。','悟りを妨げる三毒とは、苦行・瞑想・布施の三つである。','ブッダは、バラモン教の身分制度（ヴァルナ）を積極的に支持した。','涅槃とは、輪廻を繰り返して来世で富と幸福を得ることである。','三毒は貪（むさぼり）・瞋（いかり）・痴（無知）。ブッダは身分による差別を否定した。涅槃は煩悩の火が消えた安らぎの境地。'],
+[3,'大乗仏教と上座部仏教','大乗仏教は、自己の悟りだけでなく、あらゆる人々の救済をめざす菩薩を理想とした。','上座部仏教は、他者の救済を優先する菩薩を理想とした。','ナーガールジュナ（竜樹）は、あらゆる存在は心の働きがつくり出したものだとする唯識思想を確立した。','大乗仏教の修行である六波羅蜜には、戒律を守る「持戒」は含まれない。','上座部の理想は阿羅漢。ナーガールジュナは空の思想、唯識は無著・世親。六波羅蜜は布施・持戒・忍辱・精進・禅定・智慧。'],
+[3,'仏教の展開','世親（ヴァスバンドゥ）らは、あらゆる存在は心の働き（識）がつくり出したものだとする唯識思想を説いた。','ナーガールジュナは、すべてのものはそれ自体で変わらない実体をもつと説いた。','大乗仏教は、すべての生きものが仏となる可能性をもつという考えを否定した。','上座部仏教は、主に中国・朝鮮半島・日本へと伝わった。','ナーガールジュナは「空」で実体を否定。大乗は「一切衆生悉有仏性」。上座部はスリランカや東南アジアへ（南伝）。'],
+
+[4,'孔子の思想','人を愛する心である仁を最高の徳とし、仁が外に表れた社会的なふるまいの規範を礼とした。','法と厳しい刑罰によって、人々を統治すべきだと説いた。','人為を捨てて自然のままに生きる、無為自然の生き方を説いた。','鬼神や死後の世界について積極的に論じ、その探究を弟子に勧めた。','法と刑罰は法家、無為自然は老子。孔子は「未だ生を知らず、焉んぞ死を知らん」と現実の人間関係を重視した。'],
+[4,'孟子の思想','人には生まれつき四端の心が備わっており、それを育てることで仁・義・礼・智の徳が実現すると説いた。','武力によって天下を治める覇道を、理想の政治とした。','天命を失った君主が交代させられる易姓革命を否定した。','他人の不幸を見過ごせない惻隠の心は、智の徳の芽生えであるとした。','孟子は性善説・王道政治・易姓革命の肯定。惻隠は仁、羞悪は義、辞譲は礼、是非は智の端。'],
+[4,'荀子の思想','人の本性は利己的であるとし、礼によって人々を矯正し、社会の秩序を保つべきだと考えた（性悪説）。','人には生まれつき善への芽生えがあり、それを育てれば徳が実現すると考えた。','礼による教化を否定し、法と刑罰のみによる統治を主張した。','作為を捨て、自然のままに生きることを説いた。','荀子は性悪説と礼治主義。法と刑罰のみは荀子の弟子の韓非子。'],
+[4,'老子と荘子','老子は、作為を捨てて自然のままに生きる無為自然を説き、水のように争わない柔弱謙下の生き方を理想とした。','荘子は、万物にはそれぞれ優劣の区別があり、その違いを正しく見きわめるべきだと説いた。','老子は、多くの民を抱える大きな国家こそが理想だとした。','荘子は、礼を身につけた君子を理想の人間とした。','荘子は万物斉同（万物は本来等しい）を説き、理想は真人。老子の理想国家は小国寡民。'],
+[4,'朱子学と陽明学','朱子は、万物は理と気からなるとし、居敬窮理によって聖人に至ることをめざした。','王陽明は「性即理」を唱え、人の本性こそが理であるとした。','王陽明は、知ることと行うことは別のものであり、まず知を極めるべきだとした。','朱子は、格物致知を、心にある良知を発揮することだと解釈した。','性即理は朱子、心即理は王陽明。陽明は知行合一・致良知を説いた。'],
+[4,'諸子百家','墨子は、儒家の仁を身内を優先する差別的な愛だと批判し、無差別の愛である兼愛を説いた。','韓非子は、君主の徳によって民を感化する徳治主義を説いた。','墨子は、国を富ませるための侵略戦争を積極的に肯定した。','孟子は、すべての人を区別なく愛する兼愛を説いた。','墨子は兼愛・非攻。韓非子は法治主義。'],
+
+[5,'古代日本の思想','古代の日本人は、偽りや飾りのない清明心（清き明き心）を重んじた。','古代の日本人は、罪や穢れは禊や祓によっても取り除くことはできないと考えた。','古代の日本人は、天地を創造した唯一の神を信仰した。','聖徳太子は、仏教を退け、儒教だけを国家の基本とした。','罪や穢れは禊・祓で除けると考えた。神は八百万の神。聖徳太子は仏教を篤く信仰し「世間虚仮、唯仏是真」と述べたとされる。'],
+[5,'平安仏教','最澄は、すべての人が仏性をもち成仏できるとする法華経の教えにもとづき、天台宗を開いた。','空海は、阿弥陀仏の名を唱えて極楽往生を願う浄土宗を開いた。','最澄は、大日如来と一体化する即身成仏を説き、真言宗を開いた。','空海は、ひたすら念仏を唱えることが唯一の救いだと説いた。','空海は真言宗、即身成仏。浄土宗は法然。'],
+[5,'浄土の教え','法然は、ひたすら「南無阿弥陀仏」と唱える専修念仏によって、誰でも極楽往生できると説いた。','親鸞は、往生のためには自力の厳しい修行が欠かせないと説いた。','親鸞の悪人正機説は、悪人は阿弥陀仏の救いから外れるという教えである。','一遍は、踊念仏を退け、山にこもって修行することを勧めた。','親鸞は絶対他力で、自力を捨てた悪人こそ救いの対象（悪人正機）。一遍は踊念仏で各地を遊行した。'],
+[5,'鎌倉仏教（禅・日蓮）','道元は、ひたすら坐禅に打ち込む只管打坐を説き、修行と悟りは一体（修証一等）であるとした。','栄西は、宋から曹洞宗を伝え、ひたすら坐る坐禅を広めた。','日蓮は、念仏を唱えることこそが末法の世の救いであると説いた。','道元は、坐禅は悟りを得るための手段にすぎないと説いた。','栄西は臨済宗、道元が曹洞宗。日蓮は題目「南無妙法蓮華経」を唱える唱題を説き、念仏を批判した。'],
+[5,'江戸時代の儒学','林羅山は、上下の身分秩序を天地の秩序になぞらえる上下定分の理を説いた。','中江藤樹は、孝を形式的なものとして退けた。','伊藤仁斎は、朱子学を絶対の真理として受け入れ、理の探究に努めた。','荻生徂徠は、道とは個人の心を修養するための方法であると考えた。','藤樹は孝を万物の根本とした。仁斎は古義学で朱子学を批判し「誠」を重視。徂徠は道を「先王の道（安天下の道）」とした。'],
+[5,'国学','本居宣長は、物事にふれて素直に感動する心「もののあはれ」を知ることを重んじた。','賀茂真淵は、『古今和歌集』の女性的でやさしい歌風「たをやめぶり」を理想とした。','本居宣長は、儒教や仏教の考え方である漢意（からごころ）を高く評価した。','平田篤胤は、仏教を中心に神道を解釈し直した。','真淵は『万葉集』の「ますらをぶり」を理想とした。宣長は漢意を批判し真心を重視。篤胤は復古神道。'],
+[5,'江戸時代の庶民の思想','石田梅岩は、商人の利益追求を正当なものと認め、正直と倹約を説いた。','安藤昌益は、武士が支配する身分社会を「自然世」と呼んで理想とした。','二宮尊徳は、農業よりも商業を重んじる報徳思想を説いた。','安藤昌益は、すべての人が耕作に従事すべきだという考えを否定した。','昌益は身分社会を「法世」と批判し、万人直耕の「自然世」を理想とした。尊徳は農民の立場から分度・推譲を説いた。'],
+
+[6,'福沢諭吉の思想','独立自尊を説き、「一身独立して一国独立す」として、個人の自立が国家の独立の基礎になると考えた。','実際に役立つ学問よりも、儒学の古典を学ぶことを重視した。','人は生まれながらに平等な権利をもつという天賦人権論を否定した。','『三酔人経綸問答』を著し、理想と現実の政治を論じた。','福沢は実学を重視し天賦人権論を広めた。『三酔人経綸問答』は中江兆民。'],
+[6,'内村鑑三','イエスと日本という「二つのJ」に仕えることを願い、教会や儀式によらない無教会主義を唱えた。','新渡戸稲造は『代表的日本人』を著し、日本人の精神を海外に紹介した。','日露戦争に際して、戦争を積極的に支持した。','信仰には教会の儀式に参加することが欠かせないと説いた。','『代表的日本人』は内村、新渡戸は『武士道』。内村は日露戦争で非戦論を唱えた。'],
+[6,'夏目漱石と森鷗外','夏目漱石は、他人本位ではなく自己本位の立場を説き、晩年には則天去私の境地を求めたとされる。','森鷗外は、自己本位の立場から、明治の日本の開化を内発的なものとして評価した。','夏目漱石は、日本の開化は内側から自然に起こった内発的なものだと評価した。','夏目漱石は、個人主義を利己主義と同じものとみなして退けた。','漱石は日本の開化を「外発的」と批判した。鷗外は社会と自己の矛盾を受け入れる諦念（レジグナチオン）。'],
+[6,'西田幾多郎','主観と客観が分かれる以前の純粋経験こそが真の実在であるとし、『善の研究』を著した。','和辻哲郎は、主観と客観が未分化の純粋経験を真の実在とした。','西田幾多郎は、西洋哲学を一切参照せずに独自の哲学を築いた。','西田幾多郎は、人間を「間柄的存在」としてとらえた。','純粋経験は西田、間柄的存在は和辻。西田は禅の体験と西洋哲学を結びつけた。'],
+[6,'和辻哲郎','人間を、個人であると同時に社会的な存在でもある「間柄的存在」としてとらえた。','柳田国男は『風土』を著し、風土と人間のあり方の関係を論じた。','人間を、社会から切り離された孤立した個人としてとらえた。','風土を、モンスーン型・砂漠型・ツンドラ型の三つの類型に分けた。','『風土』は和辻で、類型はモンスーン型・砂漠型・牧場型。'],
+[6,'民俗学','柳田国男は、名もなき庶民である「常民」の生活や信仰を研究し、日本民俗学を確立した。','折口信夫は、名もなき庶民を「常民」と呼び、その生活文化を研究した。','柳田国男は、文献資料だけを用いて民衆の歴史を研究した。','南方熊楠は、神社合祀を推進し、鎮守の森の整理を求めた。','折口は「まれびと（客人）」。柳田は聞き取りなどフィールドワークを重視。熊楠は神社合祀に反対した。'],
+[6,'近代日本の社会思想','平塚らいてうは、雑誌『青鞜』を創刊し、女性の自立と解放を訴えた。','吉野作造は、主権が人民にあることを明確に主張する民本主義を唱えた。','北村透谷は、内面の自由よりも、社会での立身出世を重んじた。','幸徳秋水は、社会主義を批判し、国家主義を説いた。','吉野の民本主義は主権の所在を問わず、民衆のための政治を説いた。透谷は「想世界」での内部生命を重視。幸徳は社会主義者。'],
+
+[7,'ルネサンスの思想','ピコ・デラ・ミランドラは、人間は自由意志によって自らのあり方を決められる点に尊厳があると説いた。','マキャヴェリは、君主は何よりも道徳を守ることを優先すべきだと説いた。','エラスムスは『ユートピア』を著し、私有財産のない理想社会を描いた。','ルネサンスでは、中世の神中心の世界観がいっそう強められた。','マキャヴェリは政治と道徳を分離。『ユートピア』はトマス・モア、エラスムスは『愚神礼讃』。ルネサンスは人間中心（ヒューマニズム）。'],
+[7,'宗教改革','ルターは、人は信仰によってのみ義とされると説き、聖書のみを信仰のよりどころとした。','カルヴァンは、救われるかどうかは本人の善行によって決まると説いた。','ルターは、教会による贖宥状（免罪符）の販売を支持した。','ルターは、聖職者だけが神と人とを仲立ちできると説いた。','カルヴァンは予定説。ルターは贖宥状を批判し、万人司祭主義（信仰をもつ者はみな等しく祭司）を説いた。'],
+[7,'カルヴァンと近代の精神','カルヴァンは予定説を説き、職業は神から与えられた召命であるとして、勤勉な労働を勧めた。','ウェーバーは、カルヴァン派の禁欲的な生き方は、資本主義の精神とは無関係であるとした。','カルヴァンは、労働によって利潤を得ることを罪として禁じた。','モンテーニュは『パンセ』を著し、人間の偉大さと悲惨さを論じた。','ウェーバーは禁欲的プロテスタンティズムが資本主義の精神を生んだと論じた。『パンセ』はパスカル、モンテーニュは『エセー』。'],
+[7,'ベーコンの思想','偏見や思い込み（イドラ）を取り除き、観察や実験から一般法則を導く帰納法を重視した。','人間という種族に共通する感覚や精神の偏りを、洞窟のイドラと呼んだ。','確実な原理から推論によって個別の結論を導く演繹法を重視した。','権威ある学説を無批判に信じることから生じる偏見を、市場のイドラと呼んだ。','種族共通＝種族のイドラ、個人の狭い経験＝洞窟、言葉の不適切な使用＝市場、権威の盲信＝劇場のイドラ。演繹法はデカルト。'],
+[7,'デカルトの思想','疑いうるものをすべて疑う方法的懐疑の末に、「われ思う、ゆえにわれあり」を哲学の第一原理とした。','観察や実験から一般法則を導く帰納法を、学問の方法とした。','精神と物体は、一つの実体の二つの側面にすぎないと考えた。','高邁の精神とは、情念に身をゆだね、感情のままに生きる心であるとした。','デカルトは演繹法・物心二元論。高邁の精神は自由意志で情念を統御する心。'],
+[7,'イギリス経験論','ロックは、人の心は生まれたときは白紙（タブラ・ラサ）であり、観念はすべて経験から得られるとした。','ヒュームは、因果関係は経験に先立って成り立つ必然的な法則であると考えた。','バークリーは「存在するとは知覚されることである」と述べ、物質が心の外に実在することを確信した。','ロックは、人間には生まれつき備わった観念（生得観念）があると考えた。','ヒュームは因果関係を習慣による思い込みとした。バークリーは物質の実在を否定した。ロックは生得観念を否定。'],
+[7,'大陸合理論','スピノザは、神即自然の立場から、すべてを「永遠の相のもとに」認識することに人間の自由を見いだした。','ライプニッツは、世界は物質だけからなり、精神は存在しないと考えた。','パスカルは、人間は理性の力だけで真理と幸福に到達できると考えた。','スピノザは、人間の自由意志は何ものにも制約されないと全面的に肯定した。','ライプニッツはモナド（精神的実体）。パスカルは理性の限界と「繊細の精神」を説いた。スピノザは決定論。'],
+[7,'社会契約説','ホッブズは、自然状態を「万人の万人に対する闘争」とし、人々は自然権を国家に譲り渡して平和を得ると考えた。','ロックは、自然状態を闘争状態ととらえ、人民が政府に抵抗する権利を否定した。','ルソーは、一般意志とは、各人の私的な意志をそのまま足し合わせたものだとした。','ルソーは、人民の代表者が政治を行う代議制を理想とした。','ロックは自然状態を比較的平和とし、抵抗権を認めた。私的意志の総和は全体意志で、一般意志とは区別される。ルソーは直接民主制。'],
+[7,'モラリストと啓蒙思想','モンテスキューは『法の精神』で、権力の濫用を防ぐために三権分立を説いた。','ディドロらは『百科全書』によって、伝統的な権威と迷信をいっそう広めた。','モンテーニュは「私は何を知っているか（ク・セ・ジュ）」と問い、独断的な確信を持つことを勧めた。','パスカルは、論理的に推論する幾何学的精神だけが真理をとらえられるとした。','百科全書は理性による啓蒙。モンテーニュは独断を戒める懐疑主義。パスカルは繊細の精神も重視した。'],
+[7,'カントの道徳哲学','道徳法則は、「〜せよ」と無条件に命じる定言命法の形をとると考えた。','「幸福になりたいなら〜せよ」のように条件つきで命じるものこそ道徳法則であるとした。','行為の善さは、その行為がもたらした結果の良し悪しによって決まるとした。','人間の認識は、対象のあり方にそのまま従うことで成立するとした。','条件つきは仮言命法。カントは善意志（動機）を重視。認識は対象が主観の形式に従う「コペルニクス的転回」。'],
+[7,'カントの人格論','人格を単なる手段としてではなく、つねに目的として扱うべきだとし、そうした人々からなる社会を「目的の王国」と呼んだ。','自律とは、他者や社会から与えられた命令に従うことであるとした。','行為が義務に外形的に合っていれば、その動機にかかわらず道徳的に善いとした。','『永久平和のために』で、すべての国家を一つにまとめる世界統一国家を提唱した。','自律は自ら立てた法に従うこと。外形的な一致は適法性にすぎない。カントは国家連合（国際連盟の構想）を説いた。'],
+
+[8,'ヘーゲルの思想','人倫を家族・市民社会・国家の三段階でとらえ、国家において人倫が完成するとした。','市民社会を、人倫が最も完成された段階であるとした。','歴史は、人間の自由が次第に失われていく過程であるとした。','弁証法とは、矛盾や対立を排除して物事を固定的にとらえる方法である。','市民社会は「欲望の体系」で人倫の喪失態。歴史は自由が実現していく過程。弁証法は矛盾を通じて発展する論理。'],
+[8,'功利主義','ベンサムは、快楽と苦痛は数量的に計算できると考え、「最大多数の最大幸福」を道徳と立法の原理とした。','J.S.ミルは、快楽には質の違いはなく、量だけが問題であるとした。','ベンサムは、良心による内的制裁を、最も重要な制裁とした。','J.S.ミルは、他人に危害を与えない行為であっても、本人のためなら国家が規制すべきだとした。','ベンサムの制裁は自然的・法律的・道徳的・宗教的の外的制裁。良心の内的制裁を重視したのはミル。ミルは他者危害の原則。'],
+[8,'J.S.ミルの思想','「満足した豚であるより、不満足な人間であるほうがよい」として、精神的な快楽を重んじた。','自由とは、国家が個人の幸福を導くことであると考えた。','女性が参政権をもつことに反対した。','快楽の量だけを道徳の基準とした。','ミルは質的功利主義・他者危害の原則で、女性参政権を主張した。'],
+[8,'マルクスの思想','資本主義社会では、労働者が生産物や労働そのものから切り離され、人間らしさを失う労働の疎外が生じていると批判した。','政治や法などの上部構造が、経済のあり方である下部構造を決定するとした。','歴史は、精神が自らを展開していく過程であるとした。','エンゲルスは、サン・シモンやフーリエらの社会主義を科学的社会主義と呼んだ。','唯物史観では、下部構造（生産関係）が上部構造を規定する。精神の自己展開はヘーゲル。サン・シモンらは空想的社会主義。'],
+[8,'キルケゴールの思想','人は美的実存・倫理的実存を経て、神の前に単独者として立つ宗教的実存に至るとした。','誰にとっても妥当する客観的真理を追い求めることを重視した。','「死に至る病」とは、肉体を死に導く病気のことであるとした。','ヘーゲルの体系的な哲学を高く評価し、それを受け継いだ。','キルケゴールは主体的真理を求め、死に至る病＝絶望とした。ヘーゲル哲学を批判した。'],
+[8,'ニーチェの思想','キリスト教道徳を、弱者のルサンチマン（恨み）から生まれた奴隷道徳だと批判し、「神は死んだ」と述べた。','運命を愛することを否定し、人生の無意味さを嘆くことを勧めた。','超人とは、神の意志に完全に服従する人間のことである。','既存の価値が崩れても、受け身のままそれに従い続けることを勧めた。','ニーチェは運命愛を説き、超人は自ら価値を創造する人間。能動的ニヒリズムによる価値の転換を求めた。'],
+[8,'ヤスパースとハイデガー','ヤスパースは、死・苦悩・争い・罪といった限界状況に直面して挫折するとき、超越者（包括者）に出会うとした。','ハイデガーは、自らの死に向き合うことを避けることで、本来の自己に立ち返れるとした。','ヤスパースは、他者と真剣に向き合う実存的交わりは不要であるとした。','ヤスパースは、限界状況は科学技術の進歩によって克服できるとした。','ハイデガーは「死への存在」を自覚することで本来的自己に立ち返るとした。ヤスパースは「愛しながらの戦い」としての実存的交わりを重視。'],
+[8,'サルトルとボーヴォワール','サルトルは「実存は本質に先立つ」と述べ、人間は自らを未来へと投げかけて自分をつくる存在だとした。','サルトルは、人間の選択の責任は自分一人にだけ及ぶとした。','サルトルは、社会に関わること（アンガージュマン）を避け、内面の自由を守るべきだとした。','ボーヴォワールは、女らしさは生まれつきの本性であると主張した。','サルトルは選択の責任は全人類に及ぶとし、アンガージュマンを説いた。ボーヴォワールは「人は女に生まれるのではない、女になるのだ」と述べた。'],
+[8,'プラグマティズム','デューイは、知性を、生活の中で問題を解決するための道具とする道具主義を説いた。','ジェームズは、ある考えが役に立つかどうかは、それが真理かどうかとは無関係だとした。','パースは、プラグマティズムを批判し、その広がりを抑えようとした。','デューイは、民主主義を否定し、専門家による支配を説いた。','ジェームズは「有用なら真理」とした。パースは創始者。デューイは民主主義と教育を重視した。'],
+
+[9,'フランクフルト学派','ホルクハイマーとアドルノは、近代の理性が、自然や人間を支配するための道具的理性に変質したと批判した。','ハーバーマスは、対話による合意形成を不可能なものとして退けた。','フロムは『自由からの逃走』で、近代の人々が自由を積極的に引き受けたと論じた。','ハーバーマスは、システムが生活世界を支配することを望ましいものとした。','ハーバーマスは対話的理性（コミュニケーション的合理性）を重視し、「生活世界の植民地化」を批判した。フロムは自由の重荷から逃れて権威に服従する心理を分析した。'],
+[9,'構造主義とその後の思想','レヴィ＝ストロースは、未開社会の「野生の思考」を、西洋の科学的思考に劣らない論理をもつものとした。','フーコーは、権力は国家の中枢にのみ存在し、日常生活には及ばないとした。','デリダは、西洋哲学の二項対立をいっそう強固にする脱構築を唱えた。','レヴィナスは、他者を自己の理解の中に取り込むことで倫理が始まるとした。','フーコーは規律権力が日常に浸透していると分析。脱構築は二項対立を問い直す営み。レヴィナスは、自己に還元できない他者の「顔」に倫理の起点を見た。'],
+[9,'アーレントの思想','人間の活動力を労働・仕事・活動に分け、言葉を通じて他者と関わり合う「活動」を重視した。','全体主義を、人々に安定をもたらすものとして擁護した。','三つの活動力のうち、生命維持のための労働を最も重視した。','全体主義は、孤立した大衆とは無関係に生まれたと論じた。','アーレントは『全体主義の起源』で、孤立した大衆が全体主義を支えたと分析した。'],
+[9,'正義をめぐる議論','ロールズは、自分の立場や能力がわからない「無知のヴェール」のもとで選ばれる原理を、正義の原理とした。','ロールズは、社会全体の幸福の総量を最大にする功利主義を支持した。','ノージックは、国家による所得の再分配を積極的に進めるべきだとした。','サンデルら共同体主義者は、共同体から切り離された「負荷なき自己」を人間の基本と考えた。','ロールズは功利主義を批判。ノージックはリバタリアニズムで最小国家。共同体主義は「負荷なき自己」を批判した。'],
+[9,'センとロールズ','センは、人が実際に何をなしうるか、どのような状態でいられるかという潜在能力（ケイパビリティ）を重視した。','センは、所得の平等さえ実現すれば、人々の福祉は等しくなるとした。','ロールズの格差原理は、最も恵まれた人々の利益を最大にする場合に格差を認める。','センは、貧困は個人の努力不足から生じるものだと考えた。','格差原理は「最も恵まれない人々」の利益になる場合に格差を認める。センは所得だけでは福祉は測れないとした。'],
+[9,'生命倫理','インフォームド・コンセントとは、医師が十分に説明し、患者が理解・納得したうえで治療に同意することである。','SOL（生命の尊厳）とは、患者が自分の生き方を選ぶ自己決定を最優先する考えである。','日本の臓器移植法では、本人の意思表示がない場合、脳死後の臓器提供は一切認められない。','リヴィング・ウィルとは、医師が患者に代わって延命治療の方針を定めた文書である。','自己決定を重視するのはQOL（生命の質）の考え方。2009年の法改正で、本人の意思が不明でも家族の承諾で提供可能になった。リヴィング・ウィルは本人の事前の意思表示。'],
+[9,'環境倫理','現在の世代は、将来の世代の生存可能性に責任を負うという世代間倫理が主張されている。','レオポルドは、人間を含まない自然だけの共同体を守る土地倫理を説いた。','レイチェル・カーソンは『沈黙の春』で、農薬の積極的な使用を推奨した。','ハーディンの「共有地の悲劇」は、共有資源は誰もが自由に使えば永続的に維持されることを示した。','レオポルドは人間も土地共同体の一員とした。カーソンは農薬による環境汚染を告発。共有地の悲劇は、自由な利用が資源を枯渇させることを示した。'],
+[9,'科学と言語をめぐる思想','クーンは、科学は、ある時代の科学者集団が共有する枠組み（パラダイム）が転換することで変化するとした。','ポパーは、反証できない理論こそが科学的な理論であるとした。','後期のウィトゲンシュタインは、言葉の意味はその使われ方とは無関係に決まるとした。','クーンは、科学は知識が少しずつ積み重なって直線的に進歩すると考えた。','ポパーは反証可能性を科学の条件とした。後期ウィトゲンシュタインは「言語ゲーム」で、意味は使用の中にあるとした。'],
+[9,'ケアの倫理と動物・未来世代','ギリガンは、正義の倫理に対して、他者への共感や関係性を大切にする「ケアの倫理」を提唱した。','ギリガンは、ケアの倫理を道徳的に未熟な段階とみなした。','シンガーは、動物の苦痛は道徳的に考慮する必要がないとした。','ヨナスは、まだ生まれていない未来の世代への責任を否定した。','シンガーは動物の苦痛も平等に配慮すべきとした（動物の解放）。ヨナスは未来世代への責任の倫理を説いた。']
+];
+const Qs=QD.map((a,i)=>({id:i,u:a[0],topic:a[1],c:[a[2],a[3],a[4],a[5]],ex:a[6]}));
+
+/* 用語 → 思想家（タイムアタック） 用語|人物 を系統ごとに */
+const TA_RAW={
+g:'無知の知|ソクラテス,助産術|ソクラテス,魂への配慮|ソクラテス,イデア|プラトン,想起説|プラトン,哲人政治|プラトン,洞窟の比喩|プラトン,中庸|アリストテレス,観想的生活|アリストテレス,ポリス的動物|アリストテレス,形相と質料|アリストテレス,アタラクシア|エピクロス,隠れて生きよ|エピクロス,アパテイア|ゼノン,自然に従って生きよ|ゼノン,人間は万物の尺度|プロタゴラス,万物は流転する|ヘラクレイトス,アルケーは水|タレス,原子論|デモクリトス',
+r:'アガペー|イエス,山上の垂訓|イエス,信仰義認|パウロ,異邦人への伝道|パウロ,『告白』|アウグスティヌス,恩寵と原罪|アウグスティヌス,『神学大全』|トマス・アクィナス,信仰と理性の調和|トマス・アクィナス,『クルアーン』|ムハンマド,十戒|モーセ',
+e:'四諦|ブッダ,中道|ブッダ,縁起|ブッダ,空の思想|ナーガールジュナ,唯識|世親,仁と礼|孔子,克己復礼|孔子,四端の心|孟子,王道政治|孟子,易姓革命|孟子,性悪説|荀子,礼治主義|荀子,無為自然|老子,小国寡民|老子,万物斉同|荘子,真人|荘子,兼愛|墨子,非攻|墨子,法治主義|韓非子,性即理|朱子,居敬窮理|朱子,心即理|王陽明,知行合一|王陽明,致良知|王陽明',
+j:'十七条憲法|聖徳太子,世間虚仮|聖徳太子,一乗思想|最澄,即身成仏|空海,専修念仏|法然,悪人正機|親鸞,絶対他力|親鸞,踊念仏|一遍,只管打坐|道元,身心脱落|道元,唱題|日蓮,上下定分の理|林羅山,孝|中江藤樹,誠|伊藤仁斎,古文辞学|荻生徂徠,もののあはれ|本居宣長,漢意の批判|本居宣長,ますらをぶり|賀茂真淵,復古神道|平田篤胤,正直と倹約|石田梅岩,万人直耕|安藤昌益,報徳思想|二宮尊徳,独立自尊|福沢諭吉,東洋のルソー|中江兆民,無教会主義|内村鑑三,『武士道』|新渡戸稲造,則天去私|夏目漱石,諦念（レジグナチオン）|森鷗外,純粋経験|西田幾多郎,間柄的存在|和辻哲郎,常民|柳田国男,まれびと|折口信夫,民本主義|吉野作造,『青鞜』|平塚らいてう',
+w:'知は力なり|ベーコン,四つのイドラ|ベーコン,方法的懐疑|デカルト,高邁の精神|デカルト,考える葦|パスカル,神即自然|スピノザ,モナド|ライプニッツ,タブラ・ラサ|ロック,抵抗権|ロック,万人の万人に対する闘争|ホッブズ,一般意志|ルソー,自然に帰れ|ルソー,ク・セ・ジュ|モンテーニュ,三権分立|モンテスキュー,定言命法|カント,目的の王国|カント,コペルニクス的転回|カント,予定説|カルヴァン,万人司祭主義|ルター,人間の尊厳と自由意志|ピコ・デラ・ミランドラ,『君主論』|マキャヴェリ,『ユートピア』|トマス・モア,『愚神礼讃』|エラスムス,存在するとは知覚されること|バークリー,知覚の束|ヒューム',
+m:'弁証法|ヘーゲル,人倫|ヘーゲル,最大多数の最大幸福|ベンサム,快楽計算|ベンサム,他者危害の原則|J.S.ミル,質的功利主義|J.S.ミル,労働の疎外|マルクス,唯物史観|マルクス,単独者|キルケゴール,主体的真理|キルケゴール,超人|ニーチェ,永劫回帰|ニーチェ,限界状況|ヤスパース,ダス・マン（ひと）|ハイデガー,死への存在|ハイデガー,実存は本質に先立つ|サルトル,アンガージュマン|サルトル,道具主義|デューイ,無知のヴェール|ロールズ,潜在能力（ケイパビリティ）|セン,対話的理性|ハーバーマス,労働・仕事・活動|アーレント,野生の思考|レヴィ＝ストロース,他者の顔|レヴィナス,脱構築|デリダ,パラダイム|クーン,反証可能性|ポパー,言語ゲーム|ウィトゲンシュタイン,ケアの倫理|ギリガン,道具的理性|ホルクハイマー'
+};
+const TA=[];for(const g in TA_RAW){TA_RAW[g].split(',').forEach(s=>{const [t,p]=s.split('|');TA.push({t,p,g})})}
+const POOL={};TA.forEach(x=>{(POOL[x.g]=POOL[x.g]||new Set()).add(x.p)});
+
+/* ===== util ===== */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function shuffle(a,r=Math.random){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function weekId(d=new Date()){const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));const day=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-day);const y=t.getUTCFullYear();const w=Math.ceil(((t-Date.UTC(y,0,1))/864e5+1)/7);return y+'-W'+String(w).padStart(2,'0')}
+const CIRC=['①','②','③','④'];
+const WEEK=weekId();
+
+/* ===== 状態 ===== */
+const blank=()=>({nick:'',total:0,correct:0,units:{},taBest:0,wk:{id:'',score:0,ms:0},wrong:[],daily:{},last:0,shindan:'',updated:0});
+function dkey(d=new Date()){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function lastDays(n){const out=[];const d=new Date();for(let i=n-1;i>=0;i--){const x=new Date(d);x.setDate(d.getDate()-i);out.push(dkey(x))}return out}
+function streakOf(daily){daily=daily||{};let n=0;const d=new Date();if(!daily[dkey(d)])d.setDate(d.getDate()-1);while(daily[dkey(d)]>0){n++;d.setDate(d.getDate()-1)}return n}
+function weekCount(daily){daily=daily||{};return lastDays(7).reduce((s,k)=>s+(daily[k]||0),0)}
+function ago(t){if(!t)return'記録なし';const m=Math.floor((Date.now()-t)/60000);if(m<10)return'いま学習中';if(m<60)return m+'分前';const h=Math.floor(m/60);if(h<24)return h+'時間前';const dd=Math.floor(h/24);return dd===1?'昨日':dd+'日前'}
+let st=Object.assign(blank(),LS.get('kw_state',{}));
+if(RB.name&&!st.nick)st.nick=RB.name;else if(st.nick&&!RB.name)RB.setName(st.nick,true);
+try{const sc=JSON.parse(localStorage.getItem('ss_mine')||'null');if(sc&&!st.shindan)st.shindan=sc}catch(e){}
+RB.onName(n=>{st.nick=n;save();const el=$('#nick');if(el&&el.value!==n)el.value=n;renderBoard();renderActivity()});
+RB.onShindan(c=>{st.shindan=c;save();renderActivity()});
+let db=null,user=null,uid=null,players=[],boardTab='week',boardState='local',writing=Promise.resolve();
+
+function save(){st.updated=Date.now();const keep=new Set(lastDays(21));for(const k in st.daily)if(!keep.has(k))delete st.daily[k];LS.set('kw_state',st);pushRemote()}
+function bump(n){st.daily[dkey()]=(st.daily[dkey()]||0)+n;st.last=Date.now()}
+function pushRemote(){
+  if(!db||!uid)return;
+  const body=JSON.parse(JSON.stringify(st));
+  writing=writing.then(()=>db.doc('players/'+uid).set(body)).catch(e=>{console.warn('save failed',e&&e.code)});
+}
+
+/* ===== ホーム ===== */
+function renderHome(){
+  const r=st.total?st.correct/st.total*100:0;
+  $('#gbig').innerHTML=(st.total?Math.round(r):'—')+'<small>%</small>';
+  $('#gbar').style.width=Math.min(100,r)+'%';
+  $('#gsub').textContent=st.total?`${st.correct} / ${st.total}問 正解　9割まであと${Math.max(0,Math.ceil(st.total*.9-st.correct))}問ぶん`:'まだ解いた問題はありません';
+  if(st.total&&r>=90)$('#gsub').textContent=`${st.correct} / ${st.total}問 正解　9割ライン到達中`;
+  const done=st.wk.id===WEEK;
+  $('#wkTag').textContent=done?`今週 ${st.wk.score}/10`:WEEK.slice(5);$('#wkTag').classList.toggle('done',done);
+  $('#taTag').textContent='BEST '+(st.taBest||'—');
+  $('#revTag').textContent=st.wrong.length+'問';
+  $('#units').innerHTML=UNITS.map((n,i)=>{const [c,t]=st.units[i]||[0,0];const cnt=Qs.filter(q=>q.u===i).length;const p=t?Math.round(c/t*100):null;
+    return `<button class="unit" data-u="${i}"><span class="un">${n}<small>${cnt}問</small></span><span class="mini"><i class="${p>=90?'hit':''}" style="width:${p||0}%"></i></span><span class="pc num">${p===null?'—':p+'%'}</span></button>`}).join('');
+  renderBoard();renderActivity();
+}
+$('#units').onclick=e=>{const b=e.target.closest('.unit');if(!b)return;const u=+b.dataset.u;startQuiz('unit',shuffle(Qs.filter(q=>q.u===u)).slice(0,10),UNITS[u])};
+$('#mMix').onclick=()=>startQuiz('mix',shuffle(Qs).slice(0,20),'全範囲ミックス');
+$('#mRev').onclick=()=>{if(!st.wrong.length){toastHome('間違えた問題はまだありません');return}startQuiz('review',shuffle(st.wrong.map(id=>Qs[id]).filter(Boolean)).slice(0,15),'間違えた問題')};
+$('#mWeek').onclick=()=>{const r=rng(parseInt(WEEK.replace(/\D/g,''),10));startQuiz('weekly',shuffle(Qs,r).slice(0,10),'今週の10問 '+WEEK,r)};
+$('#mTA').onclick=startTA;
+function toastHome(m){$('#gsub').textContent=m}
+
+/* ===== 4択 ===== */
+let S=null;
+function startQuiz(mode,list,label,r){
+  const rr=r||Math.random;
+  S={mode,label,items:list.map(q=>({q,order:shuffle([0,1,2,3],rr),pick:null})),i:0,t0:Date.now(),counted:mode!=='weekly'||st.wk.id!==WEEK};
+  show('quiz');renderQ();
+}
+function renderQ(){
+  const it=S.items[S.i],q=it.q;
+  $('#qmode').textContent=S.label;
+  $('#qno').textContent=S.i+1;
+  $('#qprog').innerHTML=S.items.map((x,i)=>`<i class="${x.pick===null?(i===S.i?'n':''):(x.pick===0?'o':'x')}"></i>`).join('');
+  $('#qstem').innerHTML=`<b>${esc(q.topic)}</b>についての説明として最も適当なものを、次の①〜④のうちから一つ選べ。`;
+  $('#qch').innerHTML=it.order.map((ci,k)=>`<button class="ch" data-k="${k}"><span class="bub">${k+1}</span><span>${esc(q.c[ci])}</span></button>`).join('');
+  $('#qexp').innerHTML='';$('#qnext').hidden=true;
+  $('#qcount').textContent=`${S.i+1} / ${S.items.length}`;
+  if(it.pick!==null)reveal();
+}
+$('#qch').onclick=e=>{const b=e.target.closest('.ch');if(!b||b.disabled)return;const it=S.items[S.i];if(it.pick!==null)return;it.pick=it.order[+b.dataset.k];
+  if(S.counted&&S.mode!=='weekly')record(it.q,it.pick===0);reveal()};
+function reveal(){
+  const it=S.items[S.i],ok=it.pick===0;
+  document.querySelectorAll('#qch .ch').forEach((b,k)=>{const ci=it.order[k];b.disabled=true;if(ci===0)b.classList.add('right');if(ci===it.pick){b.classList.add('pick');if(!ok)b.classList.add('wrong')}});
+  const rk=it.order.indexOf(0);
+  $('#qexp').innerHTML=`<div class="expl ${ok?'':'bad'}"><b class="v">${ok?'正解':'不正解'}　正解は${CIRC[rk]}</b><p>${esc(it.q.ex)}</p></div>`;
+  $('#qprog').innerHTML=S.items.map((x,i)=>`<i class="${x.pick===null?(i===S.i?'n':''):(x.pick===0?'o':'x')}"></i>`).join('');
+  $('#qnext').hidden=false;$('#qnext').textContent=S.i<S.items.length-1?'次へ':'結果を見る';$('#qnext').focus({preventScroll:true});
+}
+$('#qnext').onclick=()=>{if(S.i<S.items.length-1){S.i++;renderQ();window.scrollTo(0,0)}else finishQuiz()};
+$('#qquit').onclick=()=>{show('home');renderHome()};
+document.addEventListener('keydown',e=>{
+  if($('#enshu').hidden)return;
+  if(!$('#quiz').hidden){const it=S.items[S.i];
+    if(it.pick===null&&e.key>='1'&&e.key<='4'){document.querySelectorAll('#qch .ch')[+e.key-1].click()}
+    else if(it.pick!==null&&(e.key==='Enter'||e.key===' ')){e.preventDefault();$('#qnext').click()}}
+  else if(!$('#ta').hidden&&e.key>='1'&&e.key<='4'){const b=document.querySelectorAll('#tgrid .tbtn')[+e.key-1];if(b)b.click()}
+});
+function record(q,ok){
+  bump(1);st.total++;if(ok)st.correct++;
+  const u=st.units[q.u]||[0,0];u[1]++;if(ok)u[0]++;st.units[q.u]=u;
+  const w=st.wrong.indexOf(q.id);
+  if(ok&&w>=0)st.wrong.splice(w,1);
+  if(!ok&&w<0)st.wrong.push(q.id);
+}
+function finishQuiz(){
+  const n=S.items.length,c=S.items.filter(x=>x.pick===0).length,ms=Date.now()-S.t0;
+  let note='';
+  if(S.mode==='weekly'){
+    if(S.counted){S.items.forEach(x=>record(x.q,x.pick===0));st.wk={id:WEEK,score:c,ms};note='この点数が今週のランキングに載りました。';}
+    else note='今週はすでに挑戦済みなので、今回の点数はランキングに反映されません。';
+  }
+  save();
+  const pct=Math.round(c/n*100);
+  const msg=pct>=90?'9割ライン到達。この精度を本番まで保ちましょう。':pct>=70?'あと一歩。間違えた問題の解説を読み直すと伸びます。':'解説を読んでから、もう一度同じ分野を解いてみましょう。';
+  const miss=S.items.filter(x=>x.pick!==0);
+  $('#result').innerHTML=`
+    <div class="blk"><span class="cap">${esc(S.label)}</span>
+      <div class="score"><span class="big">${c}</span><span class="of">/ ${n}</span><span class="msg">${msg}</span></div>
+      ${note?`<p class="cap">${note}</p>`:''}
+      <p class="cap num">所要時間 ${Math.floor(ms/60000)}分${Math.round(ms/1000)%60}秒</p></div>
+    ${miss.length?`<div class="blk"><h2>間違えた問題</h2><div class="miss">${miss.map(x=>`<div><span class="mt">${UNITS[x.q.u]} ・ ${esc(x.q.topic)}</span><p class="mc">${esc(x.q.c[0])}</p><p>${esc(x.q.ex)}</p></div>`).join('')}</div></div>`:''}
+    <div class="row"><button class="btn" id="rHome">ホームへ</button>${S.mode!=='weekly'?'<button class="btn-o" id="rAgain">同じ条件でもう一度</button>':''}</div>`;
+  show('result');
+  $('#rHome').onclick=()=>{show('home');renderHome()};
+  const again=$('#rAgain');if(again){const m=S.mode,l=S.label,u=S.items[0].q.u;again.onclick=()=>{
+    if(m==='unit')startQuiz('unit',shuffle(Qs.filter(q=>q.u===u)).slice(0,10),l);
+    else if(m==='mix')startQuiz('mix',shuffle(Qs).slice(0,20),l);
+    else $('#mRev').click()}}
+}
+
+/* ===== タイムアタック ===== */
+let T=null;
+function startTA(){
+  T={score:0,miss:[],end:Date.now()+60000,lock:false,deck:shuffle(TA),k:0};
+  show('ta');nextTA();T.timer=setInterval(tickTA,100);tickTA();
+}
+function tickTA(){const left=Math.max(0,T.end-Date.now());const s=Math.ceil(left/1000);$('#clock').textContent=s;$('#clock').classList.toggle('low',s<=10);if(left<=0)endTA()}
+function nextTA(){
+  if(T.k>=T.deck.length){T.deck=shuffle(TA);T.k=0}
+  const it=T.deck[T.k++];T.cur=it;
+  const others=shuffle([...POOL[it.g]].filter(p=>p!==it.p)).slice(0,3);
+  const opts=shuffle([it.p,...others]);
+  $('#term').textContent=it.t;$('#tsc').textContent=T.score;
+  $('#tgrid').innerHTML=opts.map(p=>`<button class="tbtn">${esc(p)}</button>`).join('');
+  T.lock=false;
+}
+$('#tgrid').onclick=e=>{const b=e.target.closest('.tbtn');if(!b||!T||T.lock)return;T.lock=true;
+  const ok=b.textContent===T.cur.p;
+  T.n=(T.n||0)+1;
+  if(ok){T.score++;b.classList.add('right');setTimeout(nextTA,180)}
+  else{b.classList.add('wrong');T.miss.push(T.cur);document.querySelectorAll('#tgrid .tbtn').forEach(x=>{if(x.textContent===T.cur.p)x.classList.add('right')});setTimeout(nextTA,700)}
+  $('#tsc').textContent=T.score};
+$('#taquit').onclick=()=>{clearInterval(T.timer);T=null;show('home');renderHome()};
+function endTA(){
+  clearInterval(T.timer);bump(T.n||0);const best=T.score>st.taBest;if(best)st.taBest=T.score;save();
+  const miss=[...new Map(T.miss.map(m=>[m.t,m])).values()];
+  $('#result').innerHTML=`
+    <div class="blk"><span class="cap">60秒タイムアタック</span>
+      <div class="score"><span class="big">${T.score}</span><span class="of">問</span><span class="msg">${best?'自己ベスト更新':'自己ベスト '+st.taBest+'問'}</span></div></div>
+    ${miss.length?`<div class="blk"><h2>迷った用語</h2><div class="miss">${miss.map(m=>`<div><p class="mc">${esc(m.t)} ― ${esc(m.p)}</p></div>`).join('')}</div></div>`:''}
+    <div class="row"><button class="btn" id="taAgain">もう一度</button><button class="btn-o" id="rHome">ホームへ</button></div>`;
+  T=null;show('result');
+  $('#taAgain').onclick=startTA;$('#rHome').onclick=()=>{show('home');renderHome()};
+}
+
+/* ===== ランキング ===== */
+document.querySelector('.tabs').onclick=e=>{const b=e.target.closest('.tab');if(!b)return;boardTab=b.dataset.tab;document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t===b));renderBoard()};
+async function renderBoard(){
+  const el=$('#board');
+  $('#boardBlk').hidden=boardState==='local';if(boardState==='local')return;
+  if(boardState==='loading'){el.innerHTML='<p class="info">読み込み中です…</p>';return}
+  if(boardState==='slow'&&!players.length){el.innerHTML='<p class="info">ランキングにまだ接続できません。少し待つと表示されます。</p>';return}
+  let rows=players.map(p=>({id:p.id,d:p.d}));
+  let val;
+  if(boardTab==='week'){rows=rows.filter(r=>r.d.wk&&r.d.wk.id===WEEK).sort((a,b)=>b.d.wk.score-a.d.wk.score||a.d.wk.ms-b.d.wk.ms);val=r=>`${r.d.wk.score}<small>/10・${Math.round(r.d.wk.ms/1000)}秒</small>`}
+  else if(boardTab==='ta'){rows=rows.filter(r=>r.d.taBest>0).sort((a,b)=>b.d.taBest-a.d.taBest);val=r=>`${r.d.taBest}<small>問</small>`}
+  else if(boardTab==='total'){rows=rows.filter(r=>r.d.correct>0).sort((a,b)=>b.d.correct-a.d.correct);val=r=>`${r.d.correct}<small>問</small>`}
+  else{rows=rows.filter(r=>r.d.total>=30).sort((a,b)=>b.d.correct/b.d.total-a.d.correct/a.d.total);val=r=>`${Math.round(r.d.correct/r.d.total*100)}%<small>${r.d.total}問中</small>`}
+  if(!rows.length){el.innerHTML=`<p class="info">${boardTab==='week'?'今週はまだ誰も挑戦していません。一番乗りをどうぞ。':boardTab==='rate'?'30問以上解いた人が表示されます。':'まだ記録がありません。'}</p>`;return}
+  const ps=user?await user.profiles(rows.map(r=>r.id)):{};
+  el.innerHTML=rows.slice(0,30).map((r,i)=>`<div class="brow${r.id===uid?' me':''}"><span class="rk">${i+1}</span><span class="nm" data-id="${esc(r.id)}"></span><span class="vl">${val(r)}</span></div>`).join('');
+  el.querySelectorAll('.nm').forEach(n=>{const r=rows.find(x=>x.id===n.dataset.id);n.textContent=(r.d.nick||'').trim()||(ps[r.id]&&ps[r.id].name)||'名無しの受験生'});
+}
+$('#nickF').onsubmit=e=>{e.preventDefault();RB.setName($('#nick').value);$('#nickMsg').textContent='保存しました';setTimeout(()=>$('#nickMsg').textContent='',2000)};
+$('#nick').value=st.nick||'';
+
+async function renderActivity(){
+  const el=$('#acts');if(!el)return;
+  const live=boardState==='live'&&players.length;
+  let rows=live?players.map(p=>({id:p.id,d:p.d})):[{id:'me',d:st}];
+  if(live&&uid){const i=rows.findIndex(r=>r.id===uid);if(i>=0)rows[i].d=st;else rows.push({id:uid,d:st})}
+  rows.sort((a,b)=>weekCount(b.d.daily)-weekCount(a.d.daily)||(b.d.last||0)-(a.d.last||0));
+  $('#actTitle').firstChild.textContent=live?'部員の活動':'あなたの学習記録';
+  const ps=live&&user?await user.profiles(rows.map(r=>r.id)):{};
+  const days=lastDays(7);
+  el.innerHTML=rows.map(r=>{const d=r.d,daily=d.daily||{},mx=Math.max(1,...days.map(k=>daily[k]||0));const sk=streakOf(daily);const tk=RB.thinkerOf?RB.thinkerOf(d.shindan):'';const a=ago(d.last);
+    return `<div class="act${(r.id===uid||r.id==='me')?' me':''}"><span class="an" data-id="${esc(r.id)}"></span><span class="wk">${weekCount(daily)}<small>問/7日</small></span>
+    <div class="meta"><span class="days" title="直近7日の解答数">${days.map(k=>{const v=daily[k]||0;return `<i class="${v?'':'z'}" style="height:${v?Math.max(4,Math.round(v/mx*22)):2}px"></i>`}).join('')}</span>
+    <span class="streak">連続 <b>${sk}</b> 日</span><span>通算 ${d.total||0}問</span><span class="${a==='いま学習中'?'nowtag':''}">${a}</span></div></div>`}).join('');
+  el.querySelectorAll('.an').forEach(n=>{const r=rows.find(x=>x.id===n.dataset.id);const nm=(r.d.nick||'').trim()||(ps[r.id]&&ps[r.id].name)||(r.id==='me'?'あなた':'名無しの受験生');
+    n.textContent=nm;const tk=RB.thinkerOf?RB.thinkerOf(r.d.shindan):'';if(tk){const sm=document.createElement('small');sm.textContent=tk+'タイプ';n.appendChild(sm)}});
+}
+function show(id){['home','quiz','ta','result'].forEach(s=>$('#'+s).hidden=s!==id);window.scrollTo(0,0)}
+window.__enshuHome=()=>{if(T&&T.timer)clearInterval(T.timer);T=null;show('home');renderHome()};
+
+/* ===== 共有データ接続（Firebase） ===== */
+const FB_CONFIG={apiKey:"AIzaSyDvuYy-o-AWBW8tNJX81uawbZEv0gZrnXw",authDomain:"rinribu-b5333.firebaseapp.com",projectId:"rinribu-b5333",storageBucket:"rinribu-b5333.firebasestorage.app",messagingSenderId:"193780423439",appId:"1:193780423439:web:af6246f8c44a76b8f07c7a"};
+let unsub=null;
+function whoText(){$('#who').textContent=uid?((st.nick||'名前未設定')+' で参加中'):'ゲスト'}
+function setAuthUI(u){
+  const box=$('#fbAuth');if(!box)return;box.hidden=false;box.innerHTML='';
+  if(u){
+    const c=document.createElement('span');c.className='cap';c.textContent='Googleでログイン中。あなたの記録はみんなの活動とランキングに載ります。';
+    const b=document.createElement('button');b.className='link';b.textContent='ログアウト';b.onclick=()=>firebase.auth().signOut();
+    box.append(c,b);
+  }else{
+    const b=document.createElement('button');b.className='btn';b.textContent='Googleでログインして参加する';b.onclick=login;
+    const c=document.createElement('span');c.className='cap';c.textContent='ログインすると、みんなの活動とランキングが見られ、自分の記録も載ります。ログインしなくても演習はできます。';
+    box.append(b,c);
+  }
+}
+async function login(){
+  try{await firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())}
+  catch(e){const p=document.createElement('p');p.className='cap';
+    const code=e&&e.code||'';
+    p.textContent=code==='auth/popup-blocked'?'ポップアップがブロックされました。ブラウザでポップアップを許可してから、もう一度押してください。':
+      code==='auth/popup-closed-by-user'?'ログイン画面が閉じられました。もう一度押してください。':
+      code==='auth/unauthorized-domain'?'このサイトのドメインがFirebaseの承認済みドメインに入っていません。':
+      'ログインできませんでした（'+(code||'不明なエラー')+'）。';
+    $('#fbAuth').appendChild(p)}
+}
+RB.onName(()=>whoText());
+(function(){
+  if(!window.firebase){return}
+  try{firebase.initializeApp(FB_CONFIG)}catch(e){return}
+  const fs=firebase.firestore();
+  firebase.auth().onAuthStateChanged(u=>{
+    if(unsub){unsub();unsub=null}
+    setAuthUI(u);
+    if(!u){db=null;uid=null;players=[];boardState='local';whoText();renderBoard();renderActivity();return}
+    db=fs;uid=u.uid;whoText();boardState='loading';renderBoard();
+    if(!st.nick){const n=$('#nick');if(n)n.placeholder='まず名前を入れてください'}
+    const slow=setTimeout(()=>{if(boardState==='loading'){boardState='slow';renderBoard()}},10000);
+    let merged=false;
+    unsub=fs.collection('players').onSnapshot(snap=>{
+      players=snap.docs.filter(d=>d.exists).map(d=>({id:d.id,d:d.data()}));
+      if(!snap.metadata.fromCache)clearTimeout(slow);
+      boardState='live';
+      if(!merged&&!snap.metadata.fromCache){merged=true;
+        const mine=players.find(p=>p.id===uid);
+        if(mine&&mine.d.updated>(st.updated||0)){st=Object.assign(blank(),JSON.parse(JSON.stringify(mine.d)));LS.set('kw_state',st);if(st.nick){RB.setName(st.nick,true);$('#nick').value=st.nick}whoText();renderHome();return}
+        if(st.total||st.taBest||st.nick)pushRemote();
+      }
+      renderBoard();renderActivity();
+    },err=>{clearTimeout(slow);boardState=players.length?'live':'slow';renderBoard();renderActivity()});
+  });
+})();
+
+renderHome();
+
+})();
+</script>
+<script>
+(function(){
+  function go(){
+    const h=(location.hash||'').slice(1);
+    const room=(h==='shindan'||/^r-[a-i]{8}$/i.test(h))?'shindan':'enshu';
+    document.getElementById('shindan').hidden=room!=='shindan';
+    document.getElementById('enshu').hidden=room!=='enshu';
+    document.querySelectorAll('.rooms a').forEach(a=>{if(a.dataset.room===room)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+    if(room==='shindan'&&window.__shindanRoute)window.__shindanRoute();
+    if(room==='enshu'&&h==='enshu'&&window.__enshuHome)window.__enshuHome();
+  }
+  window.addEventListener('hashchange',go);go();
+})();
+</script>
+</body></html>
